@@ -20,7 +20,6 @@ function toSortableTime(date: string | null): number {
 
 export default function ArtGrid({ pieces, copy }: ArtGridProps) {
   const [query, setQuery] = useState("");
-  const [sortAscending, setSortAscending] = useState(true);
   const [openId, setOpenId] = useState<string | null>(null);
 
   const visible = useMemo(() => {
@@ -29,17 +28,20 @@ export default function ArtGrid({ pieces, copy }: ArtGridProps) {
     );
     return [...filtered].sort((a, b) => {
       const diff = toSortableTime(a.date) - toSortableTime(b.date);
-      return sortAscending ? diff : -diff;
+      return -diff;
     });
-  }, [pieces, query, sortAscending]);
+  }, [pieces, query]);
 
   const openPiece = pieces.find((p) => p.id === openId) ?? null;
 
   return (
     <div className="bg-neutral-200 px-6 py-6 dark:bg-neutral-800 sm:px-10">
-      <div className="mx-auto max-w-7xl">
+      <div className="mx-auto max-w-7xl flex flex-col">
+        <p className="text-sm mb-4 max-w-2xl text-center self-center text-[15px] leading-relaxed text-neutral-600 dark:text-neutral-300">
+          {copy.intro}
+        </p>
         <div className="flex flex-wrap items-center gap-3">
-          <div className="relative flex-1 min-w-[200px]">
+          <div className="relative flex-1 min-w-50">
             <span className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-neutral-400 dark:text-neutral-300">
               ⌕
             </span>
@@ -52,14 +54,6 @@ export default function ArtGrid({ pieces, copy }: ArtGridProps) {
               className="w-full rounded-md border border-neutral-300 bg-white/70 py-2 pl-9 pr-3 text-sm text-neutral-800 placeholder:text-neutral-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-neutral-400 dark:border-neutral-600 dark:bg-neutral-700/70 dark:text-neutral-100 dark:placeholder:text-neutral-400"
             />
           </div>
-          <button
-            type="button"
-            onClick={() => setSortAscending((v) => !v)}
-            className="flex items-center gap-1.5 rounded-md border border-neutral-300 bg-white/70 px-3 py-2 text-sm text-neutral-700 hover:bg-white dark:border-neutral-600 dark:bg-neutral-700/70 dark:text-neutral-100 dark:hover:bg-neutral-700"
-          >
-            <span aria-hidden>{sortAscending ? "↑" : "↓"}</span>
-            {sortAscending ? copy.sortAscendingLabel : copy.sortDescendingLabel}
-          </button>
         </div>
 
         {visible.length > 0 ? (

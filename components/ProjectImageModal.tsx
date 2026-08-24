@@ -40,7 +40,7 @@ export default function ProjectImageModal({
       role="dialog"
       aria-modal="true"
       aria-label={`${projectTitle} — ${active.title}`}
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-4 sm:p-8"
+      className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4 backdrop-blur-md sm:p-8"
       onClick={onClose}
     >
       <button
@@ -54,7 +54,6 @@ export default function ProjectImageModal({
 
       <div
         className="relative flex max-h-full w-full max-w-4xl flex-col items-center gap-4"
-        onClick={(e) => e.stopPropagation()}
       >
         <div className="relative h-[60vh] w-full">
           <Image
@@ -67,7 +66,7 @@ export default function ProjectImageModal({
           />
         </div>
 
-        <div className="flex w-full items-center justify-between text-sm text-white/80">
+        <div className="flex w-full items-center justify-between text-sm text-white/80" onClick={(e) => e.stopPropagation()}>
           <span>
             {projectTitle} — {active.title}
           </span>
@@ -77,7 +76,7 @@ export default function ProjectImageModal({
         </div>
 
         {images.length > 1 ? (
-          <div className="flex gap-2">
+          <div className="flex gap-2" onClick={(e) => e.stopPropagation()}>
             {images.map((img, i) => (
               <button
                 key={img.id}
@@ -85,7 +84,7 @@ export default function ProjectImageModal({
                 onClick={() => onNavigate(i)}
                 aria-label={`Show ${img.title}`}
                 aria-current={i === activeIndex}
-                className={`h-14 w-14 overflow-hidden rounded-md border-2 transition-colors ${
+                className={`h-14 w-14 overflow-hidden rounded-md border-2 transition-colors cursor-pointer ${
                   i === activeIndex ? "border-white" : "border-transparent opacity-60 hover:opacity-100"
                 }`}
               >

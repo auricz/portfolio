@@ -9,9 +9,8 @@ interface ArtModalProps {
   onClose: () => void;
 }
 
-// X/Twitter-style photo viewer: large image with a side panel holding the
-// title, date, and description. On small viewports the panel moves above
-// the image instead of beside it.
+// Large image with a details panel that always sticks to the right edge —
+// no solid backgrounds; a dim, blurred backdrop shows the page behind it.
 export default function ArtModal({ piece, onClose }: ArtModalProps) {
   useEffect(() => {
     function onKeyDown(e: KeyboardEvent) {
@@ -30,32 +29,44 @@ export default function ArtModal({ piece, onClose }: ArtModalProps) {
       role="dialog"
       aria-modal="true"
       aria-label={piece.title}
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-0 sm:p-8"
+      className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4 backdrop-blur-md sm:p-8"
       onClick={onClose}
     >
       <button
         type="button"
         onClick={onClose}
         aria-label="Close artwork"
-        className="absolute right-4 top-4 z-10 flex h-9 w-9 items-center justify-center rounded-full bg-white/10 text-white hover:bg-white/20"
+        className="absolute right-4 top-4 z-10 flex h-9 w-9 items-center justify-center rounded-full bg-white/10 text-white cursor-pointer hover:bg-white/20"
       >
         ✕
       </button>
 
       <div
-        className="flex h-full w-full max-w-5xl flex-col overflow-y-auto bg-neutral-950 sm:h-auto sm:max-h-[85vh] sm:flex-row sm:overflow-hidden sm:rounded-xl"
-        onClick={(e) => e.stopPropagation()}
+        className="flex h-[85vh] w-full items-stretch"
+        
       >
-        {/* Panel: title, date, description. Appears above the image on
-            small viewports, beside it on larger ones. */}
-        <div className="order-1 shrink-0 border-b border-neutral-800 p-6 sm:order-2 sm:w-72 sm:border-b-0 sm:border-l sm:p-6">
-          <h2 className="font-display text-2xl text-neutral-50">{piece.title}</h2>
-          {piece.date ? <p className="mt-1 text-sm text-neutral-500">{piece.date}</p> : null}
-          <p className="mt-4 text-sm leading-relaxed text-neutral-300">{piece.description}</p>
+        {/* Image area: flex-1 so it fills the space left of the panel;
+            object-contain centers the image within it, giving equal
+            margins on either side of the image. */}
+        <div className="relative min-w-0 flex-1">
+          <Image
+            src={piece.src}
+            alt={piece.alt}
+            fill
+            sizes="(min-width: 640px) 60vw, 100vw"
+            className="object-contain"
+            priority
+          />
         </div>
 
-        <div className="relative order-2 min-h-[45vh] flex-1 sm:order-1 sm:min-h-0">
-          <Image src={piece.src} alt={piece.alt} fill sizes="(min-width: 640px) 60vw, 100vw" className="object-contain" priority />
+        {/* Details panel: always on the right, no solid background. */}
+        <div  
+          className="ml-4 flex w-52 shrink-0 flex-col rounded-lg bg-neutral-200 text-neutral-700 dark:text-neutral-200 dark:bg-neutral-800 border-2 p-5 overflow-auto sm:ml-8 sm:w-72 sm:p-6"
+          onClick={(e) => e.stopPropagation()}
+        >
+          <h2 className="font-display text-xl font-bold text-neutral-900 dark:text-neutral-50 sm:text-2xl">{piece.title}</h2>
+          {piece.date ? <p className="mt-1 text-sm">{piece.date}</p> : null}
+          <p className="mt-8 text-sm leading-relaxed">{piece.description}</p>
         </div>
       </div>
     </div>

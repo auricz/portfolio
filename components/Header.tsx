@@ -15,7 +15,7 @@ export default function Header({ profile, theme }: HeaderProps) {
 
       <div className="mx-auto mt-10 grid max-w-7xl grid-cols-1 gap-8 text-left sm:grid-cols-2 sm:gap-8">
         <div>
-          <h2 className="text-[11px] font-semibold uppercase tracking-[0.2em] text-neutral-500/85 dark:text-neutral-500">
+          <h2 className="text-[12px] font-semibold uppercase tracking-[0.2em] text-neutral-500/90 dark:text-neutral-500">
             {profile.aboutLabel}
           </h2>
           <p className="mt-3 text-[15px] leading-relaxed text-neutral-600 dark:text-neutral-300">
@@ -23,7 +23,7 @@ export default function Header({ profile, theme }: HeaderProps) {
           </p>
         </div>
         <div>
-          <h2 className="text-[11px] font-semibold uppercase tracking-[0.2em] text-neutral-500/85 dark:text-neutral-500">
+          <h2 className="text-[12px] font-semibold uppercase tracking-[0.2em] text-neutral-500/90 dark:text-neutral-500">
             {profile.currentlyLabel}
           </h2>
           <p className="mt-3 text-[15px] leading-relaxed text-neutral-600 dark:text-neutral-300">

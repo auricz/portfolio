@@ -1,10 +1,4 @@
-// Central content source for the entire site.
-// Every piece of text and every image path rendered on the page is
-// derived from this object — no copy or asset paths are hardcoded
-// inside components. Swap the placeholder image files in /public/images
-// with real assets at the same paths (or update the paths here).
-
-export type TabId = "software" | "art";
+export type TabId = "experiences" | "software" | "art";
 
 export interface SoftwareImage {
   id: string;
@@ -19,7 +13,18 @@ export interface SoftwareProject {
   title: string;
   description: string;
   tags: string[];
+  image: SoftwareImage;
   images: SoftwareImage[];
+}
+
+export interface Experience {
+  id: string;
+  year: string;
+  title: string;
+  company: string;
+  description: string;
+  tags: string[];
+  logo: SoftwareImage;
 }
 
 export interface ArtPiece {
@@ -50,9 +55,8 @@ export interface SiteData {
   };
   tabs: { id: TabId; label: string }[];
   art: {
+    intro: string;
     searchPlaceholder: string;
-    sortAscendingLabel: string;
-    sortDescendingLabel: string;
     emptyStateText: string;
   };
   footer: {
@@ -61,6 +65,7 @@ export interface SiteData {
     contactEmail: string;
     copyrightName: string;
   };
+  experiences: Experience[];
   softwareProjects: SoftwareProject[];
   artPieces: ArtPiece[];
 }
@@ -86,13 +91,13 @@ export const siteData: SiteData = {
     darkLabel: "Dark",
   },
   tabs: [
-    { id: "software", label: "Software" },
-    { id: "art", label: "Art" },
+    { id: "experiences", label: "Experiences" },
+    { id: "software", label: "Projects" },
+    { id: "art", label: "Art Pieces" },
   ],
   art: {
+    intro: "Here are some images that I've made in my free time. Still early in my journey, but I am still improving and I hope to continue making more art pieces in the future.",
     searchPlaceholder: "Search artworks...",
-    sortAscendingLabel: "Oldest first",
-    sortDescendingLabel: "Newest first",
     emptyStateText: "No artworks match your search.",
   },
   footer: {
@@ -101,6 +106,38 @@ export const siteData: SiteData = {
     contactEmail: "hello@yourname.dev",
     copyrightName: "Your Name",
   },
+  experiences: [
+    {
+      id: "acme-infra",
+      year: "2022–2024",
+      title: "Senior Infrastructure Engineer",
+      company: "Acme Systems",
+      description:
+        "Led the platform team responsible for service mesh reliability and deployment tooling across a 200+ service fleet. Cut incident response time by half through better observability tooling.",
+      tags: ["Go", "Kubernetes", "Observability"],
+      logo: {
+        id: "acme-infra-logo",
+        src: "/images/experiences/acme-logo.jpg",
+        alt: "Acme Systems logo",
+        title: "Acme Systems",
+      },
+    },
+    {
+      id: "nimbus-labs",
+      year: "2020–2022",
+      title: "Software Engineer",
+      company: "Nimbus Labs",
+      description:
+        "Built the core data pipeline powering real-time analytics for enterprise customers, processing millions of events per day with sub-second latency.",
+      tags: ["Python", "Kafka", "Data Engineering"],
+      logo: {
+        id: "nimbus-labs-logo",
+        src: "/images/experiences/nimbus-labs-logo.jpg",
+        alt: "Nimbus Labs logo",
+        title: "Nimbus Labs",
+      },
+    },
+  ],
   softwareProjects: [
     {
       id: "distributed-cache-engine",
@@ -109,6 +146,12 @@ export const siteData: SiteData = {
       description:
         "A high-performance in-memory caching system with LRU eviction policy and consistent hashing for horizontal scaling. Built for near-zero latency reads under heavy concurrent load.",
       tags: ["Rust", "Distributed Systems", "Networking"],
+      image: {
+        id: "distributed-cache-engine-hero",
+        src: "/images/software/distributed-cache-engine-hero.jpg",
+        alt: "Hero graphic for the distributed cache engine",
+        title: "Distributed Cache Engine",
+      },
       images: [
         {
           id: "distributed-cache-engine-1",
@@ -137,6 +180,12 @@ export const siteData: SiteData = {
       description:
         "Real-time artistic style transfer using convolutional neural networks. Supports live webcam input and exports styled video frames at 24fps with configurable style strength.",
       tags: ["Python", "PyTorch", "OpenCV"],
+      image: {
+        id: "neural-style-transfer-hero",
+        src: "/images/software/neural-style-transfer-hero.jpg",
+        alt: "Hero graphic for the neural style transfer tool",
+        title: "Neural Style Transfer",
+      },
       images: [
         {
           id: "neural-style-transfer-1",
