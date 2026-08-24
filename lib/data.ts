@@ -93,7 +93,7 @@ export const siteData: SiteData = {
   tabs: [
     { id: "experiences", label: "Experiences" },
     { id: "software", label: "Projects" },
-    { id: "art", label: "Art Pieces" },
+    { id: "art", label: "Art Gallery" },
   ],
   art: {
     intro: "Here are some images that I've made in my free time. Still early in my journey, but I am still improving and I hope to continue making more art pieces in the future.",

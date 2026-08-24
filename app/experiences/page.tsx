@@ -3,7 +3,7 @@ import ExperienceSection from "@/components/ExperienceSection";
 import { siteData } from "@/lib/data";
 
 export const metadata: Metadata = {
-  title: `Experience — ${siteData.profile.name}`,
+  title: `Experiences — ${siteData.profile.name}`,
 };
 
 export default function ExperiencePage() {

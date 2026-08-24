@@ -3,7 +3,7 @@ import ArtSection from "@/components/ArtSection";
 import { siteData } from "@/lib/data";
 
 export const metadata: Metadata = {
-  title: `Art — ${siteData.profile.name}`,
+  title: `Art Gallery — ${siteData.profile.name}`,
 };
 
 export default function ArtPage() {
