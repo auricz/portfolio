@@ -7,5 +7,5 @@ export const metadata: Metadata = {
 };
 
 export default function ArtPage() {
-  return <ArtSection pieces={siteData.artPieces} copy={siteData.art} />;
+  return <ArtSection pieces={siteData.artPieces} artIntro={siteData.artIntro} />;
 }

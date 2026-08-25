@@ -1,20 +1,20 @@
 export type TabId = "experiences" | "projects" | "art";
 
-export interface SoftwareImage {
+export interface ProjectImage {
   id: string;
   fileName: string;
   alt: string;
   title: string;
 }
 
-export interface SoftwareProject {
+export interface Project {
   id: string;
   year: string;
   title: string;
   description: string;
   tags: string[];
   heroFileName: string;
-  screenshots: SoftwareImage[];
+  screenshots: ProjectImage[];
 }
 
 export interface Experience {
@@ -51,11 +51,8 @@ export interface SiteData {
     darkLabel: string;
   };
   tabs: { id: TabId; label: string }[];
-  art: {
-    intro: string;
-    searchPlaceholder: string;
-    emptyStateText: string;
-  };
+  projectIntro: string | null;
+  artIntro: string | null;
   footer: {
     note: string;
     contactLabel: string;
@@ -63,7 +60,7 @@ export interface SiteData {
     copyrightName: string;
   };
   experiences: Experience[];
-  softwareProjects: SoftwareProject[];
+  softwareProjects: Project[];
   artPieces: ArtPiece[];
 }
 
@@ -90,11 +87,8 @@ export const siteData: SiteData = {
     { id: "projects", label: "Projects" },
     { id: "art", label: "Art Gallery" },
   ],
-  art: {
-    intro: "Here are some images that I've made in my free time. Still early in my journey, but I am still improving and I hope to continue making more art pieces in the future.",
-    searchPlaceholder: "Search artworks...",
-    emptyStateText: "No artworks match your search.",
-  },
+  projectIntro: "This website counts as a project",
+  artIntro: "Here are some images that I've made in my free time. Still early in my journey, but I am still improving and I hope to continue making more art pieces in the future.",
   footer: {
     note: "Thanks for visiting. This portfolio represents a selection of work from 2023–2024 — both the software systems I've built professionally and the art I make in my own time. If you'd like to collaborate, commission a piece, or just talk shop about distributed systems or generative art, reach out at",
     contactLabel: "Get in touch",

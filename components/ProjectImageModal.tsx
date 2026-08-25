@@ -42,7 +42,7 @@ export default function ProjectImageModal({
       role="dialog"
       aria-modal="true"
       aria-label={`${projectTitle} — ${active.title}`}
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4 backdrop-blur-md sm:p-8"
+      className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4 backdrop-blur-lg sm:p-8"
       onClick={onClose}
     >
       <button
@@ -62,13 +62,14 @@ export default function ProjectImageModal({
             src={`/projects/${projectId}/${active.fileName}`}
             alt={active.alt}
             fill
-            sizes="100vw"
-            className="object-contain"
-            priority
+            sizes="(min-width:640px) 100vw, 100vw"
+            className="object-contain bg-white dark:bg-black"
+            onClick={(e) => e.stopPropagation()}
+            
           />
         </div>
 
-        <div className="flex w-full items-center justify-between text-sm text-white/80" onClick={(e) => e.stopPropagation()}>
+        <div className="flex w-full items-center justify-between text-sm text-white" onClick={(e) => e.stopPropagation()}>
           <span>
             {projectTitle} — {active.title}
           </span>
@@ -91,7 +92,7 @@ export default function ProjectImageModal({
                 }`}
               >
                 <span className="relative block h-full w-full">
-                  <Image src={`/projects/${projectId}/${img.fileName}`} alt="" fill sizes="56px" className="object-cover" />
+                  <Image src={`/projects/${projectId}/${img.fileName}`} alt="" fill sizes="50px" className="object-cover" />
                 </span>
               </button>
             ))}

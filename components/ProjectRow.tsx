@@ -4,10 +4,10 @@ import { useState } from "react";
 import Image from "next/image";
 import HoverImage from "@/components/HoverImage";
 import ProjectImageModal from "@/components/ProjectImageModal";
-import type { SoftwareProject } from "@/lib/data";
+import type { Project } from "@/lib/data";
 
 interface ProjectRowProps {
-  project: SoftwareProject;
+  project: Project;
 }
 
 export default function ProjectRow({ project }: ProjectRowProps) {
@@ -40,7 +40,7 @@ export default function ProjectRow({ project }: ProjectRowProps) {
         </div>
 
         {/* Static project image — not clickable, no modal. */}
-        <div className="relative mx-auto h-67.5 w-67.5 shrink-0 overflow-hidden rounded-lg lg:mx-0 lg:h-100 lg:w-100">
+        <div className="relative mx-auto h-67.5 w-67.5 shrink-0 overflow-hidden rounded-lg lg:mx-0 lg:h-80 lg:w-80">
           <Image
             src={`/projects/${project.id}/${project.heroFileName}`}
             alt={`Hero image for ${project.title}`}
@@ -61,7 +61,7 @@ export default function ProjectRow({ project }: ProjectRowProps) {
             alt={image.alt}
             title={image.title}
             onClick={() => openAt(index)}
-            aspectClassName="aspect-[4/3]"
+            aspectClassName="aspect-video"
             sizes="(min-width: 640px) 30vw, 33vw"
           />
         ))}
