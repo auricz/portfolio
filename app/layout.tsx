@@ -26,7 +26,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
             <TabsNav tabs={siteData.tabs} />
           </div>
         </div>
-        <main className="flex-1">{children}</main>
+        <main className="flex-1 bg-neutral-200 dark:bg-neutral-800">{children}</main>
         <Footer footer={siteData.footer} />
       </body>
     </html>

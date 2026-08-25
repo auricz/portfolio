@@ -1,4 +1,4 @@
-export type TabId = "experiences" | "software" | "art";
+export type TabId = "experiences" | "projects" | "art";
 
 export interface SoftwareImage {
   id: string;
@@ -13,7 +13,7 @@ export interface SoftwareProject {
   title: string;
   description: string;
   tags: string[];
-  doodle: SoftwareImage;
+  heroFileName: string;
   screenshots: SoftwareImage[];
 }
 
@@ -87,7 +87,7 @@ export const siteData: SiteData = {
   },
   tabs: [
     { id: "experiences", label: "Experiences" },
-    { id: "software", label: "Projects" },
+    { id: "projects", label: "Projects" },
     { id: "art", label: "Art Gallery" },
   ],
   art: {
@@ -131,12 +131,7 @@ export const siteData: SiteData = {
       description:
         "A high-performance in-memory caching system with LRU eviction policy and consistent hashing for horizontal scaling. Built for near-zero latency reads under heavy concurrent load.",
       tags: ["Rust", "Distributed Systems", "Networking"],
-      doodle: {
-        id: "distributed-cache-engine-hero",
-        fileName: "distributed-cache-engine-hero.jpg",
-        alt: "Hero graphic for the distributed cache engine",
-        title: "Distributed Cache Engine",
-      },
+      heroFileName: "portfolio_form-mcp.png",
       screenshots: [
         {
           id: "distributed-cache-engine-1",
@@ -165,12 +160,7 @@ export const siteData: SiteData = {
       description:
         "Real-time artistic style transfer using convolutional neural networks. Supports live webcam input and exports styled video frames at 24fps with configurable style strength.",
       tags: ["Python", "PyTorch", "OpenCV"],
-      doodle: {
-        id: "neural-style-transfer-hero",
-        fileName: "neural-style-transfer.png",
-        alt: "Hero graphic for the neural style transfer tool",
-        title: "Neural Style Transfer",
-      },
+      heroFileName: "neural-style-transfer.png",
       screenshots: [
         {
           id: "neural-style-transfer-1",

@@ -40,13 +40,13 @@ export default function ProjectRow({ project }: ProjectRowProps) {
         </div>
 
         {/* Static project image — not clickable, no modal. */}
-        <div className="relative mx-auto h-67.5 w-67.5 shrink-0 overflow-hidden rounded-lg bg-neutral-300 dark:bg-neutral-700 lg:mx-0 lg:h-125 lg:w-125">
+        <div className="relative mx-auto h-67.5 w-67.5 shrink-0 overflow-hidden rounded-lg lg:mx-0 lg:h-100 lg:w-100">
           <Image
-            src={`/projects/${project.id}/${project.doodle.fileName}`}
-            alt={project.doodle.alt}
+            src={`/projects/${project.id}/${project.heroFileName}`}
+            alt={`Hero image for ${project.title}`}
             fill
             sizes="(min-width: 640px) 500px, 270px"
-            className="object-cover"
+            className="object-cover dark:invert-100"
           />
         </div>
       </div>
