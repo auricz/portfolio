@@ -3,11 +3,10 @@
 import { useState } from "react";
 import HoverImage from "@/components/HoverImage";
 import ArtModal from "@/components/ArtModal";
-import type { ArtPiece, SiteData } from "@/lib/data";
+import type { ArtPiece } from "@/lib/data";
 
 interface ArtGridProps {
   pieces: ArtPiece[];
-  artIntro: SiteData["artIntro"]
 }
 
 // Sort by date descending, then title ascending
@@ -26,7 +25,7 @@ const dateFormatter = (date: string) => {
   });
 }
 
-export default function ArtGrid({ pieces, artIntro }: ArtGridProps) {
+export default function ArtGrid({ pieces }: ArtGridProps) {
   const [openId, setOpenId] = useState<string | null>(null);
 
   const openPiece = pieces.find((p) => p.id === openId) ?? null;
@@ -34,11 +33,7 @@ export default function ArtGrid({ pieces, artIntro }: ArtGridProps) {
   return (
     <div className="bg-neutral-200 px-6 py-6 dark:bg-neutral-800 sm:px-10">
       <div className="mx-auto max-w-7xl flex flex-col">
-        {artIntro && <p className="text-sm mb-4 max-w-2xl text-center self-center text-[15px] leading-relaxed text-neutral-600 dark:text-neutral-300">
-          {artIntro}
-        </p>}
-        
-        <div className="mt-6 grid grid-cols-1 gap-3 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+        <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
           {pieces.sort(sortByDateDesc).map((piece) => (
             <HoverImage
               key={piece.id}

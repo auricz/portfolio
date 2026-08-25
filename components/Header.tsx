@@ -57,7 +57,7 @@ export default function Header({ profile, theme }: HeaderProps) {
             </div>
 
             {/* Mobile images (unchanged) */}
-            <div className="mt-6 flex items-center justify-around gap-3 md:hidden">
+            <div className="mt-6 flex items-center justify-around gap-4 md:hidden">
               <Image
                 src="/header_code.png"
                 alt=""

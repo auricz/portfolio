@@ -2,12 +2,12 @@
 
 import { useEffect } from "react";
 import Image from "next/image";
-import type { SoftwareImage } from "@/lib/data";
+import type { ProjectImage } from "@/lib/data";
 
 interface ProjectImageModalProps {
   projectTitle: string;
   projectId: string;
-  images: SoftwareImage[];
+  images: ProjectImage[];
   activeIndex: number;
   onClose: () => void;
   onNavigate: (index: number) => void;
@@ -49,13 +49,13 @@ export default function ProjectImageModal({
         type="button"
         onClick={onClose}
         aria-label="Close image"
-        className="absolute right-4 top-4 flex h-9 w-9 items-center justify-center rounded-full bg-white/10 text-white hover:bg-white/20"
+        className="absolute cursor-pointer right-4 top-4 flex h-9 w-9 items-center justify-center rounded-full bg-white/10 text-white hover:bg-white/20"
       >
         ✕
       </button>
 
       <div
-        className="relative flex max-h-full w-full max-w-4xl flex-col items-center gap-4"
+        className="relative flex max-h-full w-full max-w-4xl flex-col items-center gap-3"
       >
         <div className="relative h-[60vh] w-full">
           <Image

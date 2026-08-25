@@ -19,7 +19,7 @@ export default function ProjectRow({ project }: ProjectRowProps) {
   return (
     <div className="border-b border-neutral-300 py-8 last:border-b-0 dark:border-neutral-600">
       {/* Description + hero image, side by side on larger viewports. */}
-      <div className="flex flex-col gap-6 md:flex-row md:items-start md:justify-between">
+      <div className="flex flex-col gap-8 md:flex-row md:items-start md:justify-between">
         <div>
           <h3 className="font-display mt-1 text-2xl font-bold text-neutral-900 dark:text-neutral-50">
             {project.title}
@@ -53,7 +53,7 @@ export default function ProjectRow({ project }: ProjectRowProps) {
 
       {/* Images: always a horizontal row below the description, at every
           viewport width. */}
-      <div className="mt-6 flex justify-around gap-5 max-h-[40vh]">
+      <div className="mt-6 flex justify-around gap-4 max-h-[40vh]">
         {project.screenshots.map((image, index) => (
           <HoverImage
             key={image.id}

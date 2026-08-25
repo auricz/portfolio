@@ -12,7 +12,7 @@ export default function TabsNav({ tabs }: TabsNavProps) {
   const pathname = usePathname();
 
   return (
-    <nav aria-label="Portfolio sections" className="flex w-full gap-3">
+    <nav aria-label="Portfolio sections" className="grid grid-cols-3 w-full gap-4 break-all">
       {tabs.map((tab) => {
         const href = `/${tab.id}`;
         const active = pathname === href;

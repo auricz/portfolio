@@ -7,5 +7,5 @@ export const metadata: Metadata = {
 };
 
 export default function SoftwarePage() {
-  return <SoftwareSection projects={siteData.softwareProjects} />;
+  return <SoftwareSection projects={siteData.softwareProjects} projectIntro={siteData.projectIntro}/>;
 }

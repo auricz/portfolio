@@ -8,7 +8,7 @@ interface ExperienceRowProps {
 export default function ExperienceRow({ experience }: ExperienceRowProps) {
   return (
     <div className="border-b border-neutral-300 py-8 last:border-b-0 dark:border-neutral-600">
-      <div className="flex flex-col gap-6 sm:flex-row sm:items-start sm:justify-between">
+      <div className="flex flex-col gap-8 sm:flex-row sm:items-start sm:justify-between">
         <div>
           <h3 className="font-display font-bold  mt-1 text-2xl text-neutral-900 dark:text-neutral-50">
             {experience.title}

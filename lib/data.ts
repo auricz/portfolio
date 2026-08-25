@@ -41,7 +41,6 @@ export interface SiteData {
     siteDescription: string;
   };
   profile: {
-    eyebrow: string;
     name: string;
     about: string;
     currently: string;
@@ -71,7 +70,6 @@ export const siteData: SiteData = {
       "Software engineer and artist based in San Francisco. Distributed systems, generative art.",
   },
   profile: {
-    eyebrow: "Portfolio",
     name: "Your Name",
     about:
       "I'm a software engineer and artist based in San Francisco. I build tools that feel inevitable — systems designed around clarity and performance. When I'm not writing code, I make abstract digital work exploring color, motion, and emergent structure.",
