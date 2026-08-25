@@ -42,8 +42,8 @@ export default function ProjectRow({ project }: ProjectRowProps) {
         {/* Static project image — not clickable, no modal. */}
         <div className="relative mx-auto h-67.5 w-67.5 shrink-0 overflow-hidden rounded-lg bg-neutral-300 dark:bg-neutral-700 lg:mx-0 lg:h-125 lg:w-125">
           <Image
-            src={project.image.src}
-            alt={project.image.alt}
+            src={`/projects/${project.id}/${project.doodle.fileName}`}
+            alt={project.doodle.alt}
             fill
             sizes="(min-width: 640px) 500px, 270px"
             className="object-cover"
@@ -54,10 +54,10 @@ export default function ProjectRow({ project }: ProjectRowProps) {
       {/* Images: always a horizontal row below the description, at every
           viewport width. */}
       <div className="mt-6 flex justify-around gap-5 max-h-[40vh]">
-        {project.images.map((image, index) => (
+        {project.screenshots.map((image, index) => (
           <HoverImage
             key={image.id}
-            src={image.src}
+            src={`/projects/${project.id}/${image.fileName}`}
             alt={image.alt}
             title={image.title}
             onClick={() => openAt(index)}
@@ -70,7 +70,8 @@ export default function ProjectRow({ project }: ProjectRowProps) {
       {activeIndex !== null ? (
         <ProjectImageModal
           projectTitle={project.title}
-          images={project.images}
+          projectId={project.id}
+          images={project.screenshots}
           activeIndex={activeIndex}
           onClose={close}
           onNavigate={setActiveIndex}

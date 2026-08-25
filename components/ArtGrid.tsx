@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useState } from "react";
 import HoverImage from "@/components/HoverImage";
 import ArtModal from "@/components/ArtModal";
 import type { ArtPiece, SiteData } from "@/lib/data";
@@ -10,27 +10,24 @@ interface ArtGridProps {
   copy: SiteData["art"];
 }
 
-// Naive date parser tolerant of the "Mon YYYY" format used in the data —
-// falls back to 0 (treated as "oldest") if a piece has no date.
-function toSortableTime(date: string | null): number {
-  if (!date) return 0;
-  const parsed = Date.parse(date + " 1");
-  return Number.isNaN(parsed) ? 0 : parsed;
+// Sort by date descending, then title ascending
+const sortByDateDesc = (a: ArtPiece, b: ArtPiece) => {
+  const dateCompare = Date.parse(b.date) - Date.parse(a.date);
+  if (dateCompare !== 0) return dateCompare;
+  return a.title.localeCompare(b.title);
+}
+
+// Format dates to MMM DD, YYYY (ex: Jan 1, 2026)
+const dateFormatter = (date: string) => {
+  return new Date(date).toLocaleDateString("en-US", {
+    month: "short",
+    day: "numeric",
+    year: "numeric"
+  });
 }
 
 export default function ArtGrid({ pieces, copy }: ArtGridProps) {
-  const [query, setQuery] = useState("");
   const [openId, setOpenId] = useState<string | null>(null);
-
-  const visible = useMemo(() => {
-    const filtered = pieces.filter((p) =>
-      p.title.toLowerCase().includes(query.trim().toLowerCase())
-    );
-    return [...filtered].sort((a, b) => {
-      const diff = toSortableTime(a.date) - toSortableTime(b.date);
-      return -diff;
-    });
-  }, [pieces, query]);
 
   const openPiece = pieces.find((p) => p.id === openId) ?? null;
 
@@ -40,45 +37,24 @@ export default function ArtGrid({ pieces, copy }: ArtGridProps) {
         <p className="text-sm mb-4 max-w-2xl text-center self-center text-[15px] leading-relaxed text-neutral-600 dark:text-neutral-300">
           {copy.intro}
         </p>
-        <div className="flex flex-wrap items-center gap-3">
-          <div className="relative flex-1 min-w-50">
-            <span className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-neutral-400 dark:text-neutral-300">
-              ⌕
-            </span>
-            <input
-              type="search"
-              value={query}
-              onChange={(e) => setQuery(e.target.value)}
-              placeholder={copy.searchPlaceholder}
-              aria-label={copy.searchPlaceholder}
-              className="w-full rounded-md border border-neutral-300 bg-white/70 py-2 pl-9 pr-3 text-sm text-neutral-800 placeholder:text-neutral-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-neutral-400 dark:border-neutral-600 dark:bg-neutral-700/70 dark:text-neutral-100 dark:placeholder:text-neutral-400"
-            />
-          </div>
-        </div>
 
-        {visible.length > 0 ? (
-          <div className="mt-6 grid grid-cols-1 gap-3 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-            {visible.map((piece) => (
-              <HoverImage
-                key={piece.id}
-                src={piece.src}
-                alt={piece.alt}
-                title={piece.title}
-                date={piece.date}
-                onClick={() => setOpenId(piece.id)}
-                aspectClassName="aspect-square"
-                sizes="(min-width: 640px) 22vw, 45vw"
-              />
-            ))}
-          </div>
-        ) : (
-          <p className="mt-10 text-center text-sm text-neutral-500 dark:text-neutral-300">
-            {copy.emptyStateText}
-          </p>
-        )}
+        <div className="mt-6 grid grid-cols-1 gap-3 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+          {pieces.sort(sortByDateDesc).map((piece) => (
+            <HoverImage
+              key={piece.id}
+              src={`/art/${piece.fileName}`}
+              alt={piece.title}
+              title={piece.title}
+              date={dateFormatter(piece.date)}
+              onClick={() => setOpenId(piece.id)}
+              aspectClassName="aspect-square"
+              sizes="(min-width: 640px) 22vw, 45vw"
+            />
+          ))}
+        </div>
       </div>
 
-      {openPiece ? <ArtModal piece={openPiece} onClose={() => setOpenId(null)} /> : null}
+      {openPiece ? <ArtModal piece={openPiece} dateFormatter={dateFormatter} onClose={() => setOpenId(null)} /> : null}
     </div>
   );
 }

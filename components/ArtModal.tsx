@@ -6,12 +6,13 @@ import type { ArtPiece } from "@/lib/data";
 
 interface ArtModalProps {
   piece: ArtPiece;
+  dateFormatter: (date: string) => string;
   onClose: () => void;
 }
 
 // Large image with a details panel that always sticks to the right edge —
 // no solid backgrounds; a dim, blurred backdrop shows the page behind it.
-export default function ArtModal({ piece, onClose }: ArtModalProps) {
+export default function ArtModal({ piece, dateFormatter, onClose }: ArtModalProps) {
   useEffect(() => {
     function onKeyDown(e: KeyboardEvent) {
       if (e.key === "Escape") onClose();
@@ -50,8 +51,8 @@ export default function ArtModal({ piece, onClose }: ArtModalProps) {
             margins on either side of the image. */}
         <div className="relative min-w-0 flex-1">
           <Image
-            src={piece.src}
-            alt={piece.alt}
+            src={`/art/${piece.fileName}`}
+            alt={`Art piece titled: ${piece.title}`}
             fill
             sizes="(min-width: 640px) 60vw, 100vw"
             className="object-contain"
@@ -65,7 +66,7 @@ export default function ArtModal({ piece, onClose }: ArtModalProps) {
           onClick={(e) => e.stopPropagation()}
         >
           <h2 className="font-display text-xl font-bold text-neutral-900 dark:text-neutral-50 sm:text-2xl">{piece.title}</h2>
-          {piece.date ? <p className="mt-1 text-sm">{piece.date}</p> : null}
+          <p className="mt-1 text-sm">{dateFormatter(piece.date)}</p>
           <p className="mt-8 text-sm leading-relaxed">{piece.description}</p>
         </div>
       </div>

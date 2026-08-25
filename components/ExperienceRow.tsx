@@ -32,12 +32,12 @@ export default function ExperienceRow({ experience }: ExperienceRowProps) {
         </div>
 
         {/* Company logo — static, not clickable, no gallery below. */}
-        <div className="relative mx-auto h-65 w-65 shrink-0 overflow-hidden rounded-lg bg-neutral-300 dark:bg-neutral-700 sm:mx-0 sm:h-125 sm:w-125">
+        <div className="relative mx-auto h-65 w-65 shrink-0 overflow-hidden rounded-lg text-black bg-white lg:mx-0">
           <Image
-            src={experience.logo.src}
-            alt={experience.logo.alt}
+            src={`/experiences/${experience.logoFileName}`}
+            alt={`Logo for ${experience.company}`}
             fill
-            sizes="(min-width: 640px) 500px, 260px"
+            sizes="(min-width: 640px) 400px, 260px"
             className="object-contain p-8"
           />
         </div>

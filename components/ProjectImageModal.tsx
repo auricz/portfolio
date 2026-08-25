@@ -6,6 +6,7 @@ import type { SoftwareImage } from "@/lib/data";
 
 interface ProjectImageModalProps {
   projectTitle: string;
+  projectId: string;
   images: SoftwareImage[];
   activeIndex: number;
   onClose: () => void;
@@ -14,6 +15,7 @@ interface ProjectImageModalProps {
 
 export default function ProjectImageModal({
   projectTitle,
+  projectId,
   images,
   activeIndex,
   onClose,
@@ -57,7 +59,7 @@ export default function ProjectImageModal({
       >
         <div className="relative h-[60vh] w-full">
           <Image
-            src={active.src}
+            src={`/projects/${projectId}/${active.fileName}`}
             alt={active.alt}
             fill
             sizes="100vw"
@@ -89,7 +91,7 @@ export default function ProjectImageModal({
                 }`}
               >
                 <span className="relative block h-full w-full">
-                  <Image src={img.src} alt="" fill sizes="56px" className="object-cover" />
+                  <Image src={`/projects/${projectId}/${img.fileName}`} alt="" fill sizes="56px" className="object-cover" />
                 </span>
               </button>
             ))}
