@@ -3,13 +3,9 @@
 import { useEffect, useState } from "react";
 import Toggle from "@/components/utils/toggle/Toggle";
 import { THEME_STORAGE_KEY } from "@/lib/theme-script";
-import { ToggleData } from "@/lib/data";
 
-interface ThemeToggleProps {
-  toggleData: ToggleData;
-}
 
-export default function ThemeToggle({ toggleData }: ThemeToggleProps) {
+export default function ThemeToggle() {
   // Mirrors the class already applied by the blocking init script so the
   // client and server render agree after hydration.
   const [isDark, setIsDark] = useState<boolean | null>(null);
@@ -34,10 +30,10 @@ export default function ThemeToggle({ toggleData }: ThemeToggleProps) {
 
   return (
     <Toggle
-      toggleData={toggleData}
+      toggleData={{ label: "Theme", onLabel: "Dark", offLabel: "Light" }}
       checked={isDark ?? false}
       onChange={toggle}
-      ariaLabel="Toggle color theme"
+      ariaLabel={`Toggle themes. Currently selected theme is: ${isDark ? "dark" : "light"}`}
       visible={isDark !== null}
       themeDesign
     />

@@ -1,18 +1,16 @@
 import ThemeToggle from "@/components/utils/toggle/ThemeToggle";
 import AnimationToggle from "@/components/utils/toggle/AnimationToggle";
 import AnimateOnMount from "@/components/utils/AnimateOnMount";
-import type { SiteData, ToggleData } from "@/lib/data";
+import type { SiteData } from "@/lib/data";
 import Image from "next/image";
 import SocialLinks from "@/components/utils/SocialLinks";
 
 interface HeaderProps {
   profile: SiteData["profile"];
-  theme: ToggleData;
-  animations: ToggleData;
   links: SiteData["links"]
 }
 
-export default function Header({ profile, theme, animations, links }: HeaderProps) {
+export default function Header({ profile, links }: HeaderProps) {
   return (
     // Allow images to size the header (avoid clipping) and keep layout flow
     <header className="relative overflow-visible px-6 pt-12 pb-8 text-center md:px-10 md:pt-16">
@@ -62,8 +60,8 @@ export default function Header({ profile, theme, animations, links }: HeaderProp
             </div>
 
             <div className="mt-10 flex flex-col items-center gap-8">
-              <ThemeToggle toggleData={theme} />
-              <AnimationToggle toggleData={animations} />
+              <ThemeToggle />
+              <AnimationToggle />
             </div>
 
             {/* Mobile images (unchanged) */}

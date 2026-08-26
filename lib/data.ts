@@ -63,8 +63,6 @@ export interface SiteData {
     about: string;
     currently: string;
   };
-  themeToggle: ToggleData;
-  animationToggle: ToggleData;
   tabs: { id: TabId; label: string }[];
   projectIntro: SectionIntroData;
   artIntro: SectionIntroData;
@@ -87,16 +85,6 @@ export const siteData: SiteData = {
       "I'm a software engineer and artist based in San Francisco. I build tools that feel inevitable — systems designed around clarity and performance. When I'm not writing code, I make abstract digital work exploring color, motion, and emergent structure.",
     currently:
       "Open to senior engineering roles and creative collaborations. Previously led infrastructure at a Series B startup. Available for consulting on distributed systems and generative art installations.",
-  },
-  themeToggle: {
-    label: "Theme",
-    onLabel: "Dark",
-    offLabel: "Light",
-  },
-  animationToggle: {
-    label: "Animations",
-    onLabel: "On",
-    offLabel: "Off",
   },
   tabs: [
     { id: "experiences", label: "Experiences" },

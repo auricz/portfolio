@@ -3,13 +3,9 @@
 import { useEffect, useState } from "react";
 import Toggle from "@/components/utils/toggle/Toggle";
 import { ANIMATIONS_STORAGE_KEY } from "@/lib/animation-script";
-import { ToggleData } from "@/lib/data";
 
-interface AnimationToggleProps {
-  toggleData: ToggleData;
-}
 
-export default function AnimationToggle({ toggleData }: AnimationToggleProps) {
+export default function AnimationToggle() {
   // "checked" (knob on the right) means animations are disabled, matching
   // the blocking init script's "no-animations" class on <html>.
   const [enabled, setEnabled] = useState<boolean | null>(null);
@@ -33,10 +29,10 @@ export default function AnimationToggle({ toggleData }: AnimationToggleProps) {
 
   return (
     <Toggle
-      toggleData={toggleData}
+      toggleData={{ label: "Animations", onLabel: "On", offLabel: "Off" }}
       checked={enabled ?? false}
       onChange={toggle}
-      ariaLabel="Toggle animations"
+      ariaLabel={`Toggle animations. Currently selected option is: ${enabled ? "on" : "off"}`}
       visible={enabled !== null}
     />
   );
