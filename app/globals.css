@@ -39,6 +39,7 @@ body {
 
 /* --- Animations ---------------------------------------------------- */
 
+
 /* Header images: play automatically once on mount. */
 @keyframes slide-in-left {
   from { opacity: 0; transform: translateX(-32px); }
@@ -69,6 +70,7 @@ body {
 
 /* Disables everything above, either via the Animations toggle or, on first
    load, when the OS prefers reduced motion (see lib/animation-script.ts). */
+.no-animations,
 .no-animations .animate-slide-in-left,
 .no-animations .animate-slide-in-right {
   animation: none !important;

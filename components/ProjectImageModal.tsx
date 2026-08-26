@@ -3,6 +3,7 @@
 import { useEffect } from "react";
 import Image from "next/image";
 import type { ProjectImage } from "@/lib/data";
+import ModalContainer from "./ModalContainer";
 
 interface ProjectImageModalProps {
   projectTitle: string;
@@ -38,22 +39,12 @@ export default function ProjectImageModal({
   }, [activeIndex, images.length, onClose, onNavigate]);
 
   return (
-    <div
-      role="dialog"
-      aria-modal="true"
-      aria-label={`${projectTitle} — ${active.title}`}
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4 backdrop-blur-lg sm:p-8"
-      onClick={onClose}
+    <ModalContainer
+      bgAddClassName="p-4"
+      btnAddClassName="top-4 right-4 flex items-center justify-center"
+      ariaLabel={`${projectTitle} — ${active.title}`}
+      onClose={onClose}
     >
-      <button
-        type="button"
-        onClick={onClose}
-        aria-label="Close image"
-        className="absolute cursor-pointer right-4 top-4 flex h-9 w-9 items-center justify-center rounded-full bg-white/10 text-white hover:bg-white/20"
-      >
-        ✕
-      </button>
-
       <div
         className="relative flex max-h-full w-full max-w-4xl flex-col items-center gap-3"
       >
@@ -99,6 +90,6 @@ export default function ProjectImageModal({
           </div>
         ) : null}
       </div>
-    </div>
+    </ModalContainer>
   );
 }

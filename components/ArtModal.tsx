@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import type { ArtPiece } from "@/lib/data";
+import ModalContainer from "./ModalContainer";
 
 interface ArtModalProps {
   piece: ArtPiece;
@@ -38,22 +39,11 @@ export default function ArtModal({ piece, dateFormatter, onClose }: ArtModalProp
   img.onload = () => setImgDim({ width: img.width, height: img.height});
 
   return (
-    <div
-      role="dialog"
-      aria-modal="true"
-      aria-label={piece.title}
-      className="fixed inset-0 z-50 bg-black/50 backdrop-blur-lg"
-      onClick={onClose}
+    <ModalContainer
+      btnAddClassName="top-6 right-6 lg:top-4 lg:right-4 flex items-center justify-center"
+      ariaLabel={piece.title}
+      onClose={onClose}
     >
-      <button
-        type="button"
-        onClick={onClose}
-        aria-label="Close artwork"
-        className="fixed right-6 top-6 lg:right-4 lg:top-4 z-10 flex h-9 w-9 items-center justify-center rounded-full bg-white/10 text-white cursor-pointer hover:bg-white/20"
-      >
-        ✕
-      </button>
-
       {/* Only axis that scrolls is vertical; the fixed backdrop above keeps
           the page behind it from moving. */}
       <div className="h-full w-full overflow-y-auto overflow-x-hidden" onClick={onClose}>
@@ -61,10 +51,10 @@ export default function ArtModal({ piece, dateFormatter, onClose }: ArtModalProp
           <div className="flex w-full flex-col items-stretch lg:h-[85vh] lg:flex-row">
             {/* Details panel */}
             <div
-              className="order-1 flex mb-4 w-full shrink-0 flex-col overflow-auto rounded-lg border-2 bg-neutral-200 p-5 text-neutral-700 dark:bg-neutral-800 dark:text-neutral-200 lg:order-2 lg:mb-0 lg:ml-8 lg:w-72"
+              className="order-1 flex mb-4 w-full shrink-0 flex-col overflow-auto rounded-lg border-2 bg-neutral-200 p-5 text-neutral-700 dark:bg-neutral-800 dark:text-neutral-200 lg:order-2 lg:mb-0 lg:ml-8 lg:w-100"
               onClick={(e) => e.stopPropagation()}
             >
-              <h2 className="font-display text-2xl font-bold text-neutral-900 pr-8 dark:text-neutral-50">{piece.title}</h2>
+              <h2 className="font-display text-2xl font-bold text-neutral-900 pr-8 lg:pr-0 dark:text-neutral-50">{piece.title}</h2>
               <p className="mt-2 text-sm">{dateFormatter(piece.date)}</p>
               <p className="mt-1 text-sm h-[1ch]">{imgDim ? `${imgDim.width} × ${imgDim.height}` : ''}</p>
               <p className="mt-8 text-sm leading-relaxed">{piece.description}</p>
@@ -87,6 +77,6 @@ export default function ArtModal({ piece, dateFormatter, onClose }: ArtModalProp
           </div>
         </div>
       </div>
-    </div>
+    </ModalContainer>
   );
 }
