@@ -39,6 +39,7 @@ export default function ThemeToggle({ toggleData }: ThemeToggleProps) {
       onChange={toggle}
       ariaLabel="Toggle color theme"
       visible={isDark !== null}
+      themeDesign
     />
   );
 }
