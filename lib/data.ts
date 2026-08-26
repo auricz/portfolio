@@ -47,6 +47,12 @@ export interface SectionIntroData {
   tags?: string[];
 }
 
+export interface SocialLink {
+  label: string;
+  fileName: string;
+  href: string;
+}
+
 export interface SiteData {
   meta: {
     siteTitle: string;
@@ -66,6 +72,7 @@ export interface SiteData {
   experiences: Experience[];
   softwareProjects: Project[];
   artPieces: ArtPiece[];
+  links: SocialLink[];
 }
 
 export const siteData: SiteData = {
@@ -272,4 +279,16 @@ export const siteData: SiteData = {
       fileName: "verdant-static.jpg"
     }
   ],
+  links: [
+    {
+      label: "LinkedIn",
+      href: "#",
+      fileName: "linkedin.svg"
+    },
+    {
+      label: "GitHub",
+      href: "#",
+      fileName: "github.svg"
+    }
+  ]
 };
