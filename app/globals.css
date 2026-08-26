@@ -15,7 +15,7 @@
 }
 
 p a {
-  @apply underline text-cyan-600 dark:text-cyan-300
+  @apply underline transition-colors text-cyan-600 dark:text-cyan-300
 }
 p a:hover {
   @apply text-indigo-700 dark:text-indigo-400
@@ -157,4 +157,8 @@ body {
   opacity: 1 !important;
   transform: none !important;
   transition: none !important;
+}
+.no-animations p a,
+.no-animations button {
+  transition: none;
 }
