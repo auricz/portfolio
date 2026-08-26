@@ -1,7 +1,5 @@
 @import "tailwindcss";
 
-/* Enable class-based dark mode (toggled via .dark on <html>) instead of
-   relying on prefers-color-scheme, so the theme toggle has full control. */
 @custom-variant dark (&:where(.dark, .dark *));
 
 :root {
@@ -9,6 +7,10 @@
   --font-sans:
     -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Roboto, Helvetica, Arial,
     sans-serif;
+
+  /* Single source of truth for every entrance/scroll-reveal animation below. */
+  --transition-duration: 700ms;
+  --transition-easing: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 html {
@@ -27,12 +29,56 @@ body {
   scrollbar-width: thin;
 }
 
-/* Hide scrollbar visually for the horizontal mobile gallery while keeping
-   it scrollable and accessible. */
 .no-scrollbar::-webkit-scrollbar {
   display: none;
 }
 .no-scrollbar {
   -ms-overflow-style: none;
   scrollbar-width: none;
+}
+
+/* --- Animations ---------------------------------------------------- */
+
+/* Header images: play automatically once on mount. */
+@keyframes slide-in-left {
+  from { opacity: 0; transform: translateX(-32px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+@keyframes slide-in-right {
+  from { opacity: 0; transform: translateX(32px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+.animate-slide-in-left {
+  animation: slide-in-left var(--transition-duration) var(--transition-easing) both;
+}
+.animate-slide-in-right {
+  animation: slide-in-right var(--transition-duration) var(--transition-easing) both;
+}
+
+/* Scroll reveal: toggled via a class added by IntersectionObserver the
+   first time an element enters the viewport (see components/Reveal.tsx). */
+.reveal-right,
+.reveal-up {
+  opacity: 0;
+  transition: opacity var(--transition-duration) var(--transition-easing),
+    transform var(--transition-duration) var(--transition-easing);
+}
+.reveal-right { transform: translateX(32px); }
+.reveal-up { transform: translateY(32px); }
+.reveal-visible { opacity: 1; transform: none; }
+
+/* Disables everything above, either via the Animations toggle or, on first
+   load, when the OS prefers reduced motion (see lib/animation-script.ts). */
+.no-animations .animate-slide-in-left,
+.no-animations .animate-slide-in-right {
+  animation: none !important;
+  opacity: 1 !important;
+  transform: none !important;
+}
+.no-animations .reveal-right,
+.no-animations .reveal-up,
+.no-animations .reveal-visible {
+  opacity: 1 !important;
+  transform: none !important;
+  transition: none !important;
 }

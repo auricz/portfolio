@@ -47,8 +47,14 @@ export interface SiteData {
     currently: string;
   };
   theme: {
+    groupLabel: string;
     lightLabel: string;
     darkLabel: string;
+  };
+  animations: {
+    groupLabel: string;
+    onLabel: string;
+    offLabel: string;
   };
   tabs: { id: TabId; label: string }[];
   projectIntro: string | null;
@@ -78,8 +84,14 @@ export const siteData: SiteData = {
       "Open to senior engineering roles and creative collaborations. Previously led infrastructure at a Series B startup. Available for consulting on distributed systems and generative art installations.",
   },
   theme: {
+    groupLabel: "Theme",
     lightLabel: "Light",
     darkLabel: "Dark",
+  },
+  animations: {
+    groupLabel: "Animations",
+    onLabel: "On",
+    offLabel: "Off",
   },
   tabs: [
     { id: "experiences", label: "Experiences" },

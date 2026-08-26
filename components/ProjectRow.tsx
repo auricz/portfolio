@@ -8,10 +8,9 @@ import type { Project } from "@/lib/data";
 
 interface ProjectRowProps {
   project: Project;
-  idx: number;
 }
 
-export default function ProjectRow({ project, idx }: ProjectRowProps) {
+export default function ProjectRow({ project }: ProjectRowProps) {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
 
   const openAt = (index: number) => setActiveIndex(index);

@@ -1,13 +1,15 @@
 import ThemeToggle from "@/components/ThemeToggle";
+import AnimationToggle from "@/components/AnimationToggle";
 import type { SiteData } from "@/lib/data";
 import Image from "next/image";
 
 interface HeaderProps {
   profile: SiteData["profile"];
   theme: SiteData["theme"];
+  animations: SiteData["animations"];
 }
 
-export default function Header({ profile, theme }: HeaderProps) {
+export default function Header({ profile, theme, animations }: HeaderProps) {
   return (
     // Allow images to size the header (avoid clipping) and keep layout flow
     <header className="relative overflow-visible px-6 pt-12 pb-8 text-center md:px-10 md:pt-16">
@@ -22,7 +24,7 @@ export default function Header({ profile, theme }: HeaderProps) {
               width={250}
               height={500}
               aria-hidden="true"
-              className="w-[clamp(110px,15vw,200px)] object-contain dark:invert-100"
+              className="w-[clamp(110px,15vw,200px)] object-contain dark:invert-100 animate-slide-in-left"
               preload
             />
           </div>
@@ -52,8 +54,13 @@ export default function Header({ profile, theme }: HeaderProps) {
               </div>
             </div>
 
-            <div className="mt-10 flex justify-center">
-              <ThemeToggle lightLabel={theme.lightLabel} darkLabel={theme.darkLabel} />
+            <div className="mt-10 flex flex-col items-center gap-3">
+              <ThemeToggle groupLabel={theme.groupLabel} lightLabel={theme.lightLabel} darkLabel={theme.darkLabel} />
+              <AnimationToggle
+                groupLabel={animations.groupLabel}
+                onLabel={animations.onLabel}
+                offLabel={animations.offLabel}
+              />
             </div>
 
             {/* Mobile images (unchanged) */}
@@ -64,7 +71,7 @@ export default function Header({ profile, theme }: HeaderProps) {
                 aria-hidden="true"
                 width={250}
                 height={500}
-                className="max-h-80 w-auto object-contain dark:invert-100"
+                className="max-h-80 w-auto object-contain dark:invert-100 animate-slide-in-left"
                 preload
               />
               <Image
@@ -73,7 +80,7 @@ export default function Header({ profile, theme }: HeaderProps) {
                 aria-hidden="true"
                 width={250}
                 height={500}
-                className="max-h-80 w-auto object-contain dark:invert-100"
+                className="max-h-80 w-auto object-contain dark:invert-100 animate-slide-in-right"
                 preload
               />
             </div>
@@ -87,7 +94,7 @@ export default function Header({ profile, theme }: HeaderProps) {
               width={250}
               height={500}
               aria-hidden="true"
-              className="w-[clamp(110px,15vw,200px)] object-contain dark:invert-100"
+              className="w-[clamp(110px,15vw,200px)] object-contain dark:invert-100 animate-slide-in-right"
               preload
             />
           </div>

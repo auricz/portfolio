@@ -1,14 +1,16 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Toggle from "@/components/Toggle";
 import { THEME_STORAGE_KEY } from "@/lib/theme-script";
 
 interface ThemeToggleProps {
+  groupLabel: string;
   lightLabel: string;
   darkLabel: string;
 }
 
-export default function ThemeToggle({ lightLabel, darkLabel }: ThemeToggleProps) {
+export default function ThemeToggle({ groupLabel, lightLabel, darkLabel }: ThemeToggleProps) {
   // Mirrors the class already applied by the blocking init script so the
   // client and server render agree after hydration.
   const [isDark, setIsDark] = useState(false);
@@ -31,27 +33,13 @@ export default function ThemeToggle({ lightLabel, darkLabel }: ThemeToggleProps)
     }
   }
 
-  const label = isDark ? darkLabel : lightLabel;
-
   return (
-    <div className="flex items-center gap-2">
-      <span className="text-[11px] font-medium uppercase tracking-widest text-neutral-500/85 dark:text-neutral-500">
-        {label}
-      </span>
-      <button
-        type="button"
-        role="switch"
-        aria-checked={isDark}
-        aria-label="Toggle color theme"
-        onClick={toggle}
-        className="inline-flex h-5 w-9 shrink-0 items-center rounded-full bg-neutral-300 p-0.5 transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-400 dark:bg-neutral-600 cursor-pointer"
-      >
-        <span
-          className={`h-4 w-4 rounded-full bg-white shadow transition-transform duration-200 ${
-            isDark ? "translate-x-4" : "translate-x-0"
-          }`}
-        />
-      </button>
-    </div>
+    <Toggle
+      groupLabel={groupLabel}
+      activeLabel={isDark ? darkLabel : lightLabel}
+      checked={isDark}
+      onChange={toggle}
+      ariaLabel="Toggle color theme"
+    />
   );
 }

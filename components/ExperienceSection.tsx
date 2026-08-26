@@ -1,4 +1,5 @@
 import ExperienceRow from "@/components/ExperienceRow";
+import Reveal from "@/components/Reveal";
 import type { Experience } from "@/lib/data";
 
 interface ExperienceSectionProps {
@@ -12,7 +13,9 @@ export default function ExperienceSection({ experiences }: ExperienceSectionProp
     <div className="w-full bg-neutral-200 px-6 py-2 dark:bg-neutral-800 sm:px-10">
       <div className="mx-auto max-w-7xl">
         {experiences.map((experience) => (
-          <ExperienceRow key={experience.id} experience={experience} />
+          <Reveal key={experience.id} variant="right">
+            <ExperienceRow experience={experience} />
+          </Reveal>
         ))}
       </div>
     </div>

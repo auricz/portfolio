@@ -3,6 +3,7 @@
 import { useState } from "react";
 import HoverImage from "@/components/HoverImage";
 import ArtModal from "@/components/ArtModal";
+import Reveal from "@/components/Reveal";
 import type { ArtPiece } from "@/lib/data";
 
 interface ArtGridProps {
@@ -35,17 +36,18 @@ export default function ArtGrid({ pieces }: ArtGridProps) {
       <div className="mx-auto max-w-7xl flex flex-col">
         <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
           {pieces.sort(sortByDateDesc).map((piece, idx) => (
-            <HoverImage
-              key={piece.id}
-              src={`/art/${piece.fileName}`}
-              alt={piece.title}
-              title={piece.title}
-              date={dateFormatter(piece.date)}
-              onClick={() => setOpenId(piece.id)}
-              aspectClassName="aspect-square"
-              sizes="(min-width: 640px) 22vw, 45vw"
-              loading={idx < 4 ? "eager" : "lazy"}
-            />
+            <Reveal key={piece.id} variant="up">
+              <HoverImage
+                src={`/art/${piece.fileName}`}
+                alt={piece.title}
+                title={piece.title}
+                date={dateFormatter(piece.date)}
+                onClick={() => setOpenId(piece.id)}
+                aspectClassName="aspect-square"
+                sizes="(min-width: 640px) 22vw, 45vw"
+                loading={idx < 4 ? "eager" : "lazy"}
+              />
+            </Reveal>
           ))}
         </div>
       </div>

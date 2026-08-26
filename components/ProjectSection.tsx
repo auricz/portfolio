@@ -1,4 +1,5 @@
 import ProjectRow from "@/components/ProjectRow";
+import Reveal from "@/components/Reveal";
 import type { Project, SiteData } from "@/lib/data";
 
 interface ProjectSectionProps {
@@ -21,8 +22,10 @@ export default function ProjectSection({ projects, projectIntro }: ProjectSectio
           </div>
         }
 
-        {projects.map((project, idx) => (
-          <ProjectRow key={project.id} project={project} idx={idx} />
+        {projects.map((project) => (
+          <Reveal key={project.id} variant="right">
+            <ProjectRow project={project} />
+          </Reveal>
         ))}
       </div>
     </div>
