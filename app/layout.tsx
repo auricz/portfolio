@@ -22,7 +22,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <script dangerouslySetInnerHTML={{ __html: animationInitScript() }} />
       </head>
       <body className="flex min-h-full flex-col bg-white text-neutral-900 transition-colors dark:bg-neutral-950 dark:text-neutral-50">
-        <Header profile={siteData.profile} theme={siteData.theme} animations={siteData.animations} />
+        <Header profile={siteData.profile} theme={siteData.themeToggle} animations={siteData.animationToggle} />
         <div className="px-6 sm:px-10">
           <div className="mx-auto max-w-7xl">
             <TabsNav tabs={siteData.tabs} />

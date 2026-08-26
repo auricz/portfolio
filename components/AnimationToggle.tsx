@@ -3,17 +3,16 @@
 import { useEffect, useState } from "react";
 import Toggle from "@/components/Toggle";
 import { ANIMATIONS_STORAGE_KEY } from "@/lib/animation-script";
+import { ToggleData } from "@/lib/data";
 
 interface AnimationToggleProps {
-  groupLabel: string;
-  onLabel: string;
-  offLabel: string;
+  toggleData: ToggleData;
 }
 
-export default function AnimationToggle({ groupLabel, onLabel, offLabel }: AnimationToggleProps) {
+export default function AnimationToggle({ toggleData }: AnimationToggleProps) {
   // "checked" (knob on the right) means animations are disabled, matching
   // the blocking init script's "no-animations" class on <html>.
-  const [enabled, setEnabled] = useState(false);
+  const [enabled, setEnabled] = useState<boolean | null>(null);
 
   useEffect(() => {
     // eslint-disable-next-line react-hooks/set-state-in-effect
@@ -23,7 +22,7 @@ export default function AnimationToggle({ groupLabel, onLabel, offLabel }: Anima
   function toggle() {
     const next = !enabled;
     setEnabled(next);
-    document.documentElement.classList.toggle("no-animations", enabled);
+    document.documentElement.classList.toggle("no-animations", enabled ?? false);
     try {
       localStorage.setItem(ANIMATIONS_STORAGE_KEY, enabled ? "off" : "on");
     } catch {
@@ -34,11 +33,11 @@ export default function AnimationToggle({ groupLabel, onLabel, offLabel }: Anima
 
   return (
     <Toggle
-      groupLabel={groupLabel}
-      activeLabel={enabled ? onLabel : offLabel}
-      checked={enabled}
+      toggleData={toggleData}
+      checked={enabled ?? false}
       onChange={toggle}
       ariaLabel="Toggle animations"
+      visible={enabled !== null}
     />
   );
 }

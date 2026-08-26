@@ -3,17 +3,16 @@
 import { useEffect, useState } from "react";
 import Toggle from "@/components/Toggle";
 import { THEME_STORAGE_KEY } from "@/lib/theme-script";
+import { ToggleData } from "@/lib/data";
 
 interface ThemeToggleProps {
-  groupLabel: string;
-  lightLabel: string;
-  darkLabel: string;
+  toggleData: ToggleData;
 }
 
-export default function ThemeToggle({ groupLabel, lightLabel, darkLabel }: ThemeToggleProps) {
+export default function ThemeToggle({ toggleData }: ThemeToggleProps) {
   // Mirrors the class already applied by the blocking init script so the
   // client and server render agree after hydration.
-  const [isDark, setIsDark] = useState(false);
+  const [isDark, setIsDark] = useState<boolean | null>(null);
 
   useEffect(() => {
     // eslint-disable-next-line react-hooks/set-state-in-effect
@@ -35,11 +34,11 @@ export default function ThemeToggle({ groupLabel, lightLabel, darkLabel }: Theme
 
   return (
     <Toggle
-      groupLabel={groupLabel}
-      activeLabel={isDark ? darkLabel : lightLabel}
-      checked={isDark}
+      toggleData={toggleData}
+      checked={isDark ?? false}
       onChange={toggle}
       ariaLabel="Toggle color theme"
+      visible={isDark !== null}
     />
   );
 }

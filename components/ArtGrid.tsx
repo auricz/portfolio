@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import HoverImage from "@/components/HoverImage";
 import ArtModal from "@/components/ArtModal";
 import Reveal from "@/components/Reveal";
@@ -28,15 +28,38 @@ const dateFormatter = (date: string) => {
 
 export default function ArtGrid({ pieces }: ArtGridProps) {
   const [openId, setOpenId] = useState<string | null>(null);
+  const [colCount, setColCount] = useState<number>(1);
+  const gridRef = useRef<HTMLDivElement>(null);
 
-  const openPiece = pieces.find((p) => p.id === openId) ?? null;
+  const openPiece: ArtPiece | null = pieces.find((p) => p.id === openId) ?? null;
+
+  // Function to calculate number of columns based on rendered grid
+  const updateCols = () => {
+    if (gridRef.current) {
+      const gridStyles: CSSStyleDeclaration = window.getComputedStyle(gridRef.current);
+      const colCount = gridStyles
+        .getPropertyValue("grid-template-columns")
+        .split(" ").length;
+        setColCount(colCount);
+    }
+  };
+
+  // Update column count on resize
+  useEffect(() => {
+    updateCols();
+    window.addEventListener("resize", updateCols);
+    return () => window.removeEventListener("resize", updateCols);
+  }, []);
 
   return (
     <div className="bg-neutral-200 px-6 py-6 dark:bg-neutral-800 sm:px-10">
       <div className="mx-auto max-w-7xl flex flex-col">
-        <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-          {pieces.sort(sortByDateDesc).map((piece, idx) => (
-            <Reveal key={piece.id} variant="up">
+        <div 
+          className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4" 
+          ref={gridRef}
+        >
+          {pieces.sort(sortByDateDesc).map((piece, i) => (
+            <Reveal key={piece.id} variant="up" style={{ transitionDelay: `${(i % colCount) * 100}ms` }}>
               <HoverImage
                 src={`/art/${piece.fileName}`}
                 alt={piece.title}
@@ -45,7 +68,7 @@ export default function ArtGrid({ pieces }: ArtGridProps) {
                 onClick={() => setOpenId(piece.id)}
                 aspectClassName="aspect-square"
                 sizes="(min-width: 640px) 22vw, 45vw"
-                loading={idx < 4 ? "eager" : "lazy"}
+                loading={i < 4 ? "eager" : "lazy"}
               />
             </Reveal>
           ))}

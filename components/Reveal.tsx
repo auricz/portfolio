@@ -14,7 +14,7 @@ interface RevealProps {
 // fresh mount (i.e. switching tabs, since each tab is its own page).
 export default function Reveal({ children, variant, className = "", style }: RevealProps) {
   const ref = useRef<HTMLDivElement>(null);
-  const [visible, setVisible] = useState(false);
+  const [visible, setVisible] = useState<boolean>(false);
 
   useEffect(() => {
     const node = ref.current;

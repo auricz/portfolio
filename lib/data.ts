@@ -36,6 +36,12 @@ export interface ArtPiece {
   ref?: string;
 }
 
+export interface ToggleData {
+  label: string;
+  onLabel: string;
+  offLabel: string;
+}
+
 export interface SiteData {
   meta: {
     siteTitle: string;
@@ -46,16 +52,8 @@ export interface SiteData {
     about: string;
     currently: string;
   };
-  theme: {
-    groupLabel: string;
-    lightLabel: string;
-    darkLabel: string;
-  };
-  animations: {
-    groupLabel: string;
-    onLabel: string;
-    offLabel: string;
-  };
+  themeToggle: ToggleData;
+  animationToggle: ToggleData;
   tabs: { id: TabId; label: string }[];
   projectIntro: string | null;
   artIntro: string | null;
@@ -83,13 +81,13 @@ export const siteData: SiteData = {
     currently:
       "Open to senior engineering roles and creative collaborations. Previously led infrastructure at a Series B startup. Available for consulting on distributed systems and generative art installations.",
   },
-  theme: {
-    groupLabel: "Theme",
-    lightLabel: "Light",
-    darkLabel: "Dark",
+  themeToggle: {
+    label: "Theme",
+    onLabel: "Dark",
+    offLabel: "Light",
   },
-  animations: {
-    groupLabel: "Animations",
+  animationToggle: {
+    label: "Animations",
     onLabel: "On",
     offLabel: "Off",
   },

@@ -1,12 +1,12 @@
 import ThemeToggle from "@/components/ThemeToggle";
 import AnimationToggle from "@/components/AnimationToggle";
-import type { SiteData } from "@/lib/data";
+import type { SiteData, ToggleData } from "@/lib/data";
 import Image from "next/image";
 
 interface HeaderProps {
   profile: SiteData["profile"];
-  theme: SiteData["theme"];
-  animations: SiteData["animations"];
+  theme: ToggleData;
+  animations: ToggleData;
 }
 
 export default function Header({ profile, theme, animations }: HeaderProps) {
@@ -55,12 +55,8 @@ export default function Header({ profile, theme, animations }: HeaderProps) {
             </div>
 
             <div className="mt-10 flex flex-col items-center gap-3">
-              <ThemeToggle groupLabel={theme.groupLabel} lightLabel={theme.lightLabel} darkLabel={theme.darkLabel} />
-              <AnimationToggle
-                groupLabel={animations.groupLabel}
-                onLabel={animations.onLabel}
-                offLabel={animations.offLabel}
-              />
+              <ThemeToggle toggleData={theme} />
+              <AnimationToggle toggleData={animations} />
             </div>
 
             {/* Mobile images (unchanged) */}

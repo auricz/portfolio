@@ -71,27 +71,27 @@ body {
 
 
 /* Modal backdrop fade, shared by ModalContainer's callers. */
-@keyframes modal-fade-in {
+@keyframes fade-in {
   from { opacity: 0; }
   to { opacity: 1; }
 }
-@keyframes modal-fade-out {
+@keyframes fade-out {
   from { opacity: 1; }
   to { opacity: 0; }
 }
 .modal-fade {
-  animation: modal-fade-in var(--modal-transition-duration) var(--transition-easing) both;
+  animation: fade-in var(--modal-transition-duration) var(--transition-easing) both;
 }
 .modal-fade-closing {
-  animation: modal-fade-out var(--modal-transition-duration) var(--transition-easing) both;
+  animation: fade-out var(--modal-transition-duration) var(--transition-easing) both;
 }
 
 /* Art modal: image fades; panel fades + slides (top on narrow, right at lg). */
 .art-image {
-  animation: modal-fade-in var(--modal-transition-duration) var(--transition-easing) both;
+  animation: fade-in var(--modal-transition-duration) var(--transition-easing) both;
 }
 .art-image-closing {
-  animation: modal-fade-out var(--modal-transition-duration) var(--transition-easing) both;
+  animation: fade-out var(--modal-transition-duration) var(--transition-easing) both;
 }
 @keyframes art-panel-in-top {
   from { opacity: 0; transform: translateY(-24px); }
