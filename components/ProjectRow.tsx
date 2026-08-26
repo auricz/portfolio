@@ -8,9 +8,10 @@ import type { Project } from "@/lib/data";
 
 interface ProjectRowProps {
   project: Project;
+  idx: number;
 }
 
-export default function ProjectRow({ project }: ProjectRowProps) {
+export default function ProjectRow({ project, idx }: ProjectRowProps) {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
 
   const openAt = (index: number) => setActiveIndex(index);
@@ -44,8 +45,8 @@ export default function ProjectRow({ project }: ProjectRowProps) {
           <Image
             src={`/projects/${project.id}/${project.heroFileName}`}
             alt={`Hero image for ${project.title}`}
-            fill
-            sizes="(min-width: 640px) 500px, 270px"
+            width={500}
+            height={500}
             className="object-cover dark:invert-100"
           />
         </div>

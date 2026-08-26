@@ -33,6 +33,7 @@ export interface ArtPiece {
   date: string;
   description: string;
   fileName: string;
+  ref?: string;
 }
 
 export interface SiteData {
@@ -172,7 +173,7 @@ export const siteData: SiteData = {
   artPieces: [
     {
       id: "sunset-fold",
-      title: "Sunset Fold",
+      title: "Sunset Fold and More cuz i need a long name to see how this looks",
       date: "2024-03-15",
       description:
         "A study in folded gradients — warm light bending through a single continuous surface.",
@@ -199,34 +200,6 @@ export const siteData: SiteData = {
       date: "2024-01-23",
       description: "Particle noise driven by a Perlin field, biased toward teal and violet.",
       fileName: "verdant-static.jpg"
-    },
-    {
-      id: "tidal-current",
-      title: "Tidal Current",
-      date: "2024-01-09",
-      description: "Flow-field simulation rendered as layered ribbons of color in motion.",
-      fileName: "tidal-current.jpg"
-    },
-    {
-      id: "deep-marble",
-      title: "Deep Marble",
-      date: "2024-01-02",
-      description: "Fluid dynamics simulation captured mid-diffusion, rendered in cool tones.",
-      fileName: "deep-marble.jpg"
-    },
-    {
-      id: "molten-fiber",
-      title: "Molten Fiber",
-      date: "2023-09-18",
-      description: "Thousands of thin strands simulated under a shared force field.",
-      fileName: "molten-fiber.jpg"
-    },
-    {
-      id: "violet-arc",
-      title: "Background Pattern",
-      date: "2023-11-04",
-      description: "A minimal arc gradient designed as a tileable background pattern.",
-      fileName: "violet-arc.jpg"
-    },
+    }
   ],
 };

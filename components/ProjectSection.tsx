@@ -21,8 +21,8 @@ export default function ProjectSection({ projects, projectIntro }: ProjectSectio
           </div>
         }
 
-        {projects.map((project) => (
-          <ProjectRow key={project.id} project={project} />
+        {projects.map((project, idx) => (
+          <ProjectRow key={project.id} project={project} idx={idx} />
         ))}
       </div>
     </div>

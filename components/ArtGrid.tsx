@@ -34,7 +34,7 @@ export default function ArtGrid({ pieces }: ArtGridProps) {
     <div className="bg-neutral-200 px-6 py-6 dark:bg-neutral-800 sm:px-10">
       <div className="mx-auto max-w-7xl flex flex-col">
         <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-          {pieces.sort(sortByDateDesc).map((piece) => (
+          {pieces.sort(sortByDateDesc).map((piece, idx) => (
             <HoverImage
               key={piece.id}
               src={`/art/${piece.fileName}`}
@@ -44,6 +44,7 @@ export default function ArtGrid({ pieces }: ArtGridProps) {
               onClick={() => setOpenId(piece.id)}
               aspectClassName="aspect-square"
               sizes="(min-width: 640px) 22vw, 45vw"
+              loading={idx < 4 ? "eager" : "lazy"}
             />
           ))}
         </div>

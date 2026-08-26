@@ -22,8 +22,8 @@ export default function Header({ profile, theme }: HeaderProps) {
               width={250}
               height={500}
               aria-hidden="true"
-              className="w-[clamp(110px,15vw,200px)] max-w-[30vw] object-contain dark:invert-100"
-              priority
+              className="w-[clamp(110px,15vw,200px)] object-contain dark:invert-100"
+              preload
             />
           </div>
 
@@ -64,8 +64,8 @@ export default function Header({ profile, theme }: HeaderProps) {
                 aria-hidden="true"
                 width={250}
                 height={500}
-                className="max-h-80 object-contain dark:invert-100"
-                priority
+                className="max-h-80 w-auto object-contain dark:invert-100"
+                preload
               />
               <Image
                 src="/header_art.png"
@@ -73,8 +73,8 @@ export default function Header({ profile, theme }: HeaderProps) {
                 aria-hidden="true"
                 width={250}
                 height={500}
-                className="max-h-80 object-contain dark:invert-100"
-                priority
+                className="max-h-80 w-auto object-contain dark:invert-100"
+                preload
               />
             </div>
           </div>
@@ -87,8 +87,8 @@ export default function Header({ profile, theme }: HeaderProps) {
               width={250}
               height={500}
               aria-hidden="true"
-              className="w-[clamp(110px,15vw,200px)] max-w-[30vw] object-contain dark:invert-100"
-              priority
+              className="w-[clamp(110px,15vw,200px)] object-contain dark:invert-100"
+              preload
             />
           </div>
         </div>

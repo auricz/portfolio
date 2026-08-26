@@ -11,7 +11,7 @@ interface HoverImageProps {
   sizes?: string;
   aspectClassName?: string;
   className?: string;
-  priority?: boolean;
+  loading?: "eager" | "lazy";
 }
 
 /**
@@ -30,7 +30,7 @@ export default function HoverImage({
   sizes = "(min-width: 640px) 33vw, 90vw",
   aspectClassName = "aspect-square",
   className = "",
-  priority = false,
+  loading = "lazy",
 }: HoverImageProps) {
   return (
     <button
@@ -43,7 +43,7 @@ export default function HoverImage({
         alt={alt}
         fill
         sizes={sizes}
-        priority={priority}
+        loading={loading}
         className="object-cover transition-transform duration-300 group-hover:scale-[1.03]"
       />
       <span
