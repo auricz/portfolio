@@ -1,5 +1,6 @@
 import ThemeToggle from "@/components/utils/toggle/ThemeToggle";
 import AnimationToggle from "@/components/utils/toggle/AnimationToggle";
+import AnimateOnMount from "@/components/utils/AnimateOnMount";
 import type { SiteData, ToggleData } from "@/lib/data";
 import Image from "next/image";
 import SocialLinks from "@/components/utils/SocialLinks";
@@ -20,15 +21,17 @@ export default function Header({ profile, theme, animations, links }: HeaderProp
           {/* Left image column (only visible on md+). Images are in the same flow as
               the header content so they don't overlap the text. */}
           <div className="hidden md:flex md:items-start md:justify-start">
-            <Image
-              src="/header_code.png"
-              alt=""
-              width={250}
-              height={500}
-              aria-hidden="true"
-              className="w-[clamp(110px,15vw,200px)] object-contain dark:invert-100 animate-slide-in-left"
-              preload
-            />
+            <AnimateOnMount variant="left">
+              <Image
+                src="/header_code.png"
+                alt=""
+                width={250}
+                height={500}
+                aria-hidden="true"
+                className="w-[clamp(110px,15vw,200px)] object-contain dark:invert-100"
+                preload
+              />
+            </AnimateOnMount>
           </div>
 
           {/* Main content column */}
@@ -65,38 +68,44 @@ export default function Header({ profile, theme, animations, links }: HeaderProp
 
             {/* Mobile images (unchanged) */}
             <div className="mt-6 flex items-center justify-around gap-4 md:hidden">
-              <Image
-                src="/header_code.png"
-                alt=""
-                aria-hidden="true"
-                width={250}
-                height={500}
-                className="max-h-80 w-auto object-contain dark:invert-100 animate-slide-in-left"
-                preload
-              />
-              <Image
-                src="/header_art.png"
-                alt=""
-                aria-hidden="true"
-                width={250}
-                height={500}
-                className="max-h-80 w-auto object-contain dark:invert-100 animate-slide-in-right"
-                preload
-              />
+              <AnimateOnMount variant="left">
+                <Image
+                  src="/header_code.png"
+                  alt=""
+                  aria-hidden="true"
+                  width={250}
+                  height={500}
+                  className="max-h-80 w-auto object-contain dark:invert-100"
+                  preload
+                />
+              </AnimateOnMount>
+              <AnimateOnMount variant="right">
+                <Image
+                  src="/header_art.png"
+                  alt=""
+                  aria-hidden="true"
+                  width={250}
+                  height={500}
+                  className="max-h-80 w-auto object-contain dark:invert-100"
+                  preload
+                />
+              </AnimateOnMount>
             </div>
           </div>
 
           {/* Right image column (only visible on md+). */}
           <div className="hidden md:flex md:items-start md:justify-end">
-            <Image
-              src="/header_art.png"
-              alt=""
-              width={250}
-              height={500}
-              aria-hidden="true"
-              className="w-[clamp(110px,15vw,200px)] object-contain dark:invert-100 animate-slide-in-right"
-              preload
-            />
+            <AnimateOnMount variant="right">
+              <Image
+                src="/header_art.png"
+                alt=""
+                width={250}
+                height={500}
+                aria-hidden="true"
+                className="w-[clamp(110px,15vw,200px)] object-contain dark:invert-100"
+                preload
+              />
+            </AnimateOnMount>
           </div>
         </div>
       </div>
