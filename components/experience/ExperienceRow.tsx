@@ -1,5 +1,6 @@
 import Image from "next/image";
 import type { Experience } from "@/lib/data";
+import TagsRow from "@/components/utils/TagsRow";
 
 interface ExperienceRowProps {
   experience: Experience;
@@ -19,16 +20,7 @@ export default function ExperienceRow({ experience }: ExperienceRowProps) {
           <p className="mt-3 max-w-3xl text-[15px] leading-relaxed text-neutral-600 dark:text-neutral-300">
             {experience.description}
           </p>
-          <ul className="mt-4 flex flex-wrap gap-2">
-            {experience.tags.map((tag) => (
-              <li
-                key={tag}
-                className="rounded-full border border-neutral-400 px-3 py-1 text-xs text-neutral-600 dark:border-neutral-500 dark:text-neutral-300"
-              >
-                {tag}
-              </li>
-            ))}
-          </ul>
+          <TagsRow tags={experience.tags} />
         </div>
 
         {/* Company logo — static, not clickable, no gallery below. */}

@@ -6,6 +6,7 @@ import HoverImage from "@/components/utils/HoverImage";
 import ProjectImageModal from "@/components/project/ProjectImageModal";
 import type { Project } from "@/lib/data";
 import Reveal from "@/components/utils/Reveal";
+import TagsRow from "@/components/utils/TagsRow";
 
 interface ProjectRowProps {
   project: Project;
@@ -28,16 +29,7 @@ export default function ProjectRow({ project }: ProjectRowProps) {
           <p className="mt-3 max-w-3xl text-[15px] leading-relaxed text-neutral-600 dark:text-neutral-300">
             {project.description}
           </p>
-          <ul className="mt-4 flex flex-wrap gap-2">
-            {project.tags.map((tag) => (
-              <li
-                key={tag}
-                className="rounded-full border border-neutral-400 px-3 py-1 text-xs text-neutral-600 dark:border-neutral-500 dark:text-neutral-300"
-              >
-                {tag}
-              </li>
-            ))}
-          </ul>
+          <TagsRow tags={project.tags} />
         </div>
 
         {/* Static project image — not clickable, no modal. */}

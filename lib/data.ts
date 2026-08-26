@@ -42,6 +42,11 @@ export interface ToggleData {
   offLabel: string;
 }
 
+export interface SectionIntroData {
+  intro: string;
+  tags?: string[];
+}
+
 export interface SiteData {
   meta: {
     siteTitle: string;
@@ -55,14 +60,9 @@ export interface SiteData {
   themeToggle: ToggleData;
   animationToggle: ToggleData;
   tabs: { id: TabId; label: string }[];
-  projectIntro: string | null;
-  artIntro: string | null;
-  footer: {
-    note: string;
-    contactLabel: string;
-    contactEmail: string;
-    copyrightName: string;
-  };
+  projectIntro: SectionIntroData;
+  artIntro: SectionIntroData;
+  footer: string;
   experiences: Experience[];
   softwareProjects: Project[];
   artPieces: ArtPiece[];
@@ -96,14 +96,14 @@ export const siteData: SiteData = {
     { id: "projects", label: "Projects" },
     { id: "art", label: "Art Gallery" },
   ],
-  projectIntro: "This website counts as a project",
-  artIntro: "Here are some images that I've made in my free time. Still early in my journey, but I am still improving and I hope to continue making more art pieces in the future.",
-  footer: {
-    note: "Thanks for visiting. This portfolio represents a selection of work from 2023–2024 — both the software systems I've built professionally and the art I make in my own time. If you'd like to collaborate, commission a piece, or just talk shop about distributed systems or generative art, reach out at",
-    contactLabel: "Get in touch",
-    contactEmail: "hello@yourname.dev",
-    copyrightName: "Your Name",
+  projectIntro: {
+    intro: "This website counts as a project. <a href=\"http://localhost:3000\">Link here</a>",
+    tags: ["GCP", "NextJS", "Google Sheets"]
   },
+  artIntro: {
+    intro: "Here are some images that I've made in my free time. Still early in my journey, but I am still improving and I hope to continue making more art pieces in the future.",
+  },
+  footer: "Thanks for visiting. This portfolio represents a selection of work from 2023–2024 — both the software systems I've built professionally and the art I make in my own time. If you'd like to collaborate, commission a piece, or just talk shop about distributed systems or generative art, reach out at",
   experiences: [
     {
       id: "acme-infra",
