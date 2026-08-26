@@ -1,5 +1,5 @@
-import ThemeToggle from "@/components/toggle/ThemeToggle";
-import AnimationToggle from "@/components/toggle/AnimationToggle";
+import ThemeToggle from "@/components/utils/toggle/ThemeToggle";
+import AnimationToggle from "@/components/utils/toggle/AnimationToggle";
 import type { SiteData, ToggleData } from "@/lib/data";
 import Image from "next/image";
 

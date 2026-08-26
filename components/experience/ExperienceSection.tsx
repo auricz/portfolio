@@ -1,5 +1,5 @@
 import ExperienceRow from "@/components/experience/ExperienceRow";
-import Reveal from "@/components/utls/Reveal";
+import Reveal from "@/components/utils/Reveal";
 import type { Experience } from "@/lib/data";
 
 interface ExperienceSectionProps {

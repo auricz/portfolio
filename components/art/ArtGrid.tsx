@@ -1,9 +1,9 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import HoverImage from "@/components/utls/HoverImage";
+import HoverImage from "@/components/utils/HoverImage";
 import ArtModal from "@/components/art/ArtModal";
-import Reveal from "@/components/utls/Reveal";
+import Reveal from "@/components/utils/Reveal";
 import type { ArtPiece } from "@/lib/data";
 
 interface ArtGridProps {

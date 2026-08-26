@@ -1,6 +1,6 @@
 import ArtGrid from "@/components/art/ArtGrid";
 import type { ArtPiece, SiteData } from "@/lib/data";
-import SectionIntro from "@/components/utls/SectionIntro";
+import SectionIntro from "@/components/utils/SectionIntro";
 
 interface ArtSectionProps {
   pieces: ArtPiece[];
