@@ -21,7 +21,7 @@ export default function TabsNav({ tabs }: TabsNavProps) {
             key={tab.id}
             href={href}
             aria-current={active ? "page" : undefined}
-            className={`flex-1 rounded-t-md px-4 py-2.5 text-center text-lg transition-colors  ${
+            className={`flex-1 rounded-t-md px-4 py-2.5 text-center text-lg ${
               active
                 ? // Matches the panel background directly below, so the
                   // active tab reads as physically attached to its section.
