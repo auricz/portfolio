@@ -212,6 +212,66 @@ export const siteData: SiteData = {
       date: "2024-01-23",
       description: "Particle noise driven by a Perlin field, biased toward teal and violet.",
       fileName: "verdant-static.jpg"
+    },
+    {
+      id: "sunset-fold2",
+      title: "Sunset Fold and More cuz i need a long name to see how this looks",
+      date: "2024-03-15",
+      description:
+        "A study in folded gradients — warm light bending through a single continuous surface.",
+      fileName: "sunset-fold.jpg"
+    },
+    {
+      id: "amber-bloom2",
+      title: "Amber Bloom",
+      date: "2024-02-24",
+      description:
+        "Generative petals rendered from a recursive branching algorithm, tuned for warm color harmony.",
+      fileName: "amber-bloom.jpg"
+    },
+    {
+      id: "onyx-crane2",
+      title: "Onyx Crane",
+      date: "2024-02-09",
+      description: "A silhouette study exploring negative space against a warm gradient field.",
+      fileName: "onyx-crane.jpg"
+    },
+    {
+      id: "verdant-static2",
+      title: "Verdant Static",
+      date: "2024-01-23",
+      description: "Particle noise driven by a Perlin field, biased toward teal and violet.",
+      fileName: "verdant-static.jpg"
+    },
+    {
+      id: "sunset-fold3",
+      title: "Sunset Fold and More cuz i need a long name to see how this looks",
+      date: "2024-03-15",
+      description:
+        "A study in folded gradients — warm light bending through a single continuous surface.",
+      fileName: "sunset-fold.jpg"
+    },
+    {
+      id: "amber-bloom3",
+      title: "Amber Bloom",
+      date: "2024-02-24",
+      description:
+        "Generative petals rendered from a recursive branching algorithm, tuned for warm color harmony.",
+      fileName: "amber-bloom.jpg"
+    },
+    {
+      id: "onyx-crane3",
+      title: "Onyx Crane",
+      date: "2024-02-09",
+      description: "A silhouette study exploring negative space against a warm gradient field.",
+      fileName: "onyx-crane.jpg"
+    },
+    {
+      id: "verdant-static3",
+      title: "Verdant Static",
+      date: "2024-01-23",
+      description: "Particle noise driven by a Perlin field, biased toward teal and violet.",
+      fileName: "verdant-static.jpg"
     }
   ],
 };

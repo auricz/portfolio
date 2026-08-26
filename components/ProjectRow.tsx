@@ -5,6 +5,7 @@ import Image from "next/image";
 import HoverImage from "@/components/HoverImage";
 import ProjectImageModal from "@/components/ProjectImageModal";
 import type { Project } from "@/lib/data";
+import Reveal from "./Reveal";
 
 interface ProjectRowProps {
   project: Project;
@@ -55,15 +56,16 @@ export default function ProjectRow({ project }: ProjectRowProps) {
           viewport width. */}
       <div className="mt-6 flex justify-around gap-4 max-h-[40vh]">
         {project.screenshots.map((image, index) => (
-          <HoverImage
-            key={image.id}
-            src={`/projects/${project.id}/${image.fileName}`}
-            alt={image.alt}
-            title={image.title}
-            onClick={() => openAt(index)}
-            aspectClassName="aspect-video"
-            sizes="(min-width: 640px) 30vw, 33vw"
-          />
+          <Reveal key={image.id} variant="right" className="w-full" style={{ transitionDelay: `${index * 100}ms` }}>
+            <HoverImage
+              src={`/projects/${project.id}/${image.fileName}`}
+              alt={image.alt}
+              title={image.title}
+              onClick={() => openAt(index)}
+              aspectClassName="aspect-video"
+              sizes="(min-width: 640px) 30vw, 33vw"
+            />
+          </Reveal>
         ))}
       </div>
 

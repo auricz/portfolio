@@ -11,6 +11,7 @@
   /* Single source of truth for every entrance/scroll-reveal animation below. */
   --transition-duration: 700ms;
   --transition-easing: cubic-bezier(0.16, 1, 0.3, 1);
+  --modal-transition-duration: 200ms;
 }
 
 html {
@@ -68,6 +69,57 @@ body {
 .reveal-up { transform: translateY(32px); }
 .reveal-visible { opacity: 1; transform: none; }
 
+
+/* Modal backdrop fade, shared by ModalContainer's callers. */
+@keyframes modal-fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes modal-fade-out {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+.modal-fade {
+  animation: modal-fade-in var(--modal-transition-duration) var(--transition-easing) both;
+}
+.modal-fade-closing {
+  animation: modal-fade-out var(--modal-transition-duration) var(--transition-easing) both;
+}
+
+/* Art modal: image fades; panel fades + slides (top on narrow, right at lg). */
+.art-image {
+  animation: modal-fade-in var(--modal-transition-duration) var(--transition-easing) both;
+}
+.art-image-closing {
+  animation: modal-fade-out var(--modal-transition-duration) var(--transition-easing) both;
+}
+@keyframes art-panel-in-top {
+  from { opacity: 0; transform: translateY(-24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes art-panel-out-top {
+  from { opacity: 1; transform: translateY(0); }
+  to { opacity: 0; transform: translateY(-24px); }
+}
+@keyframes art-panel-in-right {
+  from { opacity: 0; transform: translateX(24px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+@keyframes art-panel-out-right {
+  from { opacity: 1; transform: translateX(0); }
+  to { opacity: 0; transform: translateX(24px); }
+}
+.art-panel {
+  animation: art-panel-in-top var(--modal-transition-duration) var(--transition-easing) both;
+}
+.art-panel-closing {
+  animation: art-panel-out-top var(--modal-transition-duration) var(--transition-easing) both;
+}
+@media (min-width: 1024px) {
+  .art-panel { animation-name: art-panel-in-right; }
+  .art-panel-closing { animation-name: art-panel-out-right; }
+}
+
 /* Disables everything above, either via the Animations toggle or, on first
    load, when the OS prefers reduced motion (see lib/animation-script.ts). */
 .no-animations,
@@ -80,6 +132,17 @@ body {
 .no-animations .reveal-right,
 .no-animations .reveal-up,
 .no-animations .reveal-visible {
+  opacity: 1 !important;
+  transform: none !important;
+  transition: none !important;
+}
+.no-animations .modal-fade,
+.no-animations .modal-fade-closing,
+.no-animations .art-image,
+.no-animations .art-image-closing,
+.no-animations .art-panel,
+.no-animations .art-panel-closing {
+  animation: none !important;
   opacity: 1 !important;
   transform: none !important;
   transition: none !important;

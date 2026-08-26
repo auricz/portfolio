@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import Image from "next/image";
 import type { ProjectImage } from "@/lib/data";
 import ModalContainer from "./ModalContainer";
+import { useModalTransition } from "@/lib/use-modal-transition";
 
 interface ProjectImageModalProps {
   projectTitle: string;
@@ -23,10 +24,11 @@ export default function ProjectImageModal({
   onNavigate,
 }: ProjectImageModalProps) {
   const active = images[activeIndex];
+  const { closing, close: triggerClose } = useModalTransition(onClose);
 
   useEffect(() => {
     function onKeyDown(e: KeyboardEvent) {
-      if (e.key === "Escape") onClose();
+      if (e.key === "Escape") triggerClose();
       if (e.key === "ArrowRight") onNavigate((activeIndex + 1) % images.length);
       if (e.key === "ArrowLeft") onNavigate((activeIndex - 1 + images.length) % images.length);
     }
@@ -36,14 +38,15 @@ export default function ProjectImageModal({
       document.removeEventListener("keydown", onKeyDown);
       document.body.style.overflow = "";
     };
-  }, [activeIndex, images.length, onClose, onNavigate]);
+  }, [activeIndex, images.length, triggerClose, onNavigate]);
 
   return (
     <ModalContainer
       bgAddClassName="p-4"
       btnAddClassName="top-4 right-4 flex items-center justify-center"
       ariaLabel={`${projectTitle} — ${active.title}`}
-      onClose={onClose}
+      onClose={triggerClose}
+      closing={closing}
     >
       <div
         className="relative flex max-h-full w-full max-w-4xl flex-col items-center gap-3"

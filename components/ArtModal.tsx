@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 import type { ArtPiece } from "@/lib/data";
 import ModalContainer from "./ModalContainer";
+import { useModalTransition } from "@/lib/use-modal-transition";
 
 interface ArtModalProps {
   piece: ArtPiece;
@@ -19,10 +20,11 @@ interface ArtModalProps {
 // effect below).
 export default function ArtModal({ piece, dateFormatter, onClose }: ArtModalProps) {
   const [imgDim, setImgDim] = useState<{ width: number; height: number } | null>(null);
+  const { closing, close: triggerClose } = useModalTransition(onClose);
 
   useEffect(() => {
     function onKeyDown(e: KeyboardEvent) {
-      if (e.key === "Escape") onClose();
+      if (e.key === "Escape") triggerClose();
     }
     document.addEventListener("keydown", onKeyDown);
     document.body.style.overflow = "hidden";
@@ -30,7 +32,7 @@ export default function ArtModal({ piece, dateFormatter, onClose }: ArtModalProp
       document.removeEventListener("keydown", onKeyDown);
       document.body.style.overflow = "";
     };
-  }, [onClose]);
+  }, [triggerClose]);
 
   const artSrc: string = `/art/${piece.fileName}`;
 
@@ -42,16 +44,26 @@ export default function ArtModal({ piece, dateFormatter, onClose }: ArtModalProp
     <ModalContainer
       btnAddClassName="top-6 right-6 lg:top-4 lg:right-4 flex items-center justify-center"
       ariaLabel={piece.title}
-      onClose={onClose}
+      onClose={triggerClose}
+      closing={closing}
     >
       {/* Only axis that scrolls is vertical; the fixed backdrop above keeps
           the page behind it from moving. */}
-      <div className="h-full w-full overflow-y-auto overflow-x-hidden" onClick={onClose}>
+      <div className="h-full w-full overflow-y-auto overflow-x-hidden">
         <div className="flex min-h-full justify-center p-4 lg:items-center">
           <div className="flex w-full flex-col items-stretch lg:h-[85vh] lg:flex-row">
             {/* Details panel */}
             <div
-              className="order-1 flex mb-4 w-full shrink-0 flex-col overflow-auto rounded-lg border-2 bg-neutral-200 p-5 text-neutral-700 dark:bg-neutral-800 dark:text-neutral-200 lg:order-2 lg:mb-0 lg:ml-8 lg:w-100"
+              className={`
+                art-panel ${closing ? "art-panel-closing" : ""} 
+                order-1 lg:order-2
+                flex flex-col shrink-0 
+                mb-4 p-5 lg:mb-0 lg:ml-8
+                w-full lg:w-100
+                overflow-auto 
+                rounded-lg border-2 bg-neutral-200 dark:bg-neutral-800
+                text-neutral-700 dark:text-neutral-200
+              `}
               onClick={(e) => e.stopPropagation()}
             >
               <h2 className="font-display text-2xl font-bold text-neutral-900 pr-8 lg:pr-0 dark:text-neutral-50">{piece.title}</h2>
@@ -68,7 +80,7 @@ export default function ArtModal({ piece, dateFormatter, onClose }: ArtModalProp
                   alt={`Art piece titled: ${piece.title}`}
                   width={2000}
                   height={2000}
-                  className="w-auto lg:max-h-[85vh] object-contain bg-white dark:bg-black"
+                  className="w-auto lg:max-h-[85vh] object-contain"
                   onClick={(e) => e.stopPropagation()}
                   preload
                 />

@@ -5,6 +5,7 @@ interface ArtModalProps {
   btnAddClassName?: string;
   ariaLabel: string;
   onClose: () => void;
+  closing?: boolean;
   children: React.ReactNode;
 }
 
@@ -13,6 +14,7 @@ export default function ModalContainer({
   btnAddClassName = "",
   ariaLabel,
   onClose,
+  closing = false,
   children
 }: ArtModalProps) {
   return (
@@ -20,7 +22,7 @@ export default function ModalContainer({
       role="dialog"
       aria-modal="true"
       aria-label={ariaLabel}
-      className={`fixed inset-0 z-50 flex items-center justify-center backdrop-blur-lg bg-black/50 ${bgAddClassName}`}
+      className={`fixed inset-0 z-50 flex items-center justify-center backdrop-blur-lg bg-black/50 modal-fade ${closing ? "modal-fade-closing" : ""} ${bgAddClassName}`}
       onClick={onClose}
     >
       <button
