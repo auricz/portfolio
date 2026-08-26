@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Toggle from "@/components/Toggle";
+import Toggle from "@/components/toggle/Toggle";
 import { ANIMATIONS_STORAGE_KEY } from "@/lib/animation-script";
 import { ToggleData } from "@/lib/data";
 

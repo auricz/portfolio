@@ -1,7 +1,7 @@
-import ProjectRow from "@/components/ProjectRow";
-import Reveal from "@/components/Reveal";
+import ProjectRow from "@/components/project/ProjectRow";
+import Reveal from "@/components/utls/Reveal";
 import type { Project, SiteData } from "@/lib/data";
-import SectionIntro from "./SectionIntro";
+import SectionIntro from "@/components/utls/SectionIntro";
 
 interface ProjectSectionProps {
   projects: Project[];

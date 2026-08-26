@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import ArtSection from "@/components/ArtSection";
+import ArtSection from "@/components/art/ArtSection";
 import { siteData } from "@/lib/data";
 
 export const metadata: Metadata = {

@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import type { ArtPiece } from "@/lib/data";
-import ModalContainer from "./ModalContainer";
+import ModalContainer from "@/components/utls/ModalContainer";
 import { useModalTransition } from "@/lib/use-modal-transition";
 
 interface ArtModalProps {

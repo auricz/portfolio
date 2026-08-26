@@ -2,10 +2,10 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import HoverImage from "@/components/HoverImage";
-import ProjectImageModal from "@/components/ProjectImageModal";
+import HoverImage from "@/components/utls/HoverImage";
+import ProjectImageModal from "@/components/project/ProjectImageModal";
 import type { Project } from "@/lib/data";
-import Reveal from "./Reveal";
+import Reveal from "@/components/utls/Reveal";
 
 interface ProjectRowProps {
   project: Project;
