@@ -13,7 +13,7 @@ interface ToggleProps {
 
 const sharedBtnClass: string = `
   px-4 py-2 
-  border-4 border-neutral-300 dark:border-neutral-600
+  border-4 border-neutral-300 dark:border-neutral-700
   text-[11px] font-medium uppercase tracking-widest
   text-neutral-600 dark:text-neutral-300
   focus-visible:outline-2 focus-visible:outline-offset-1
@@ -21,7 +21,7 @@ const sharedBtnClass: string = `
 `;
 
 const selectedClass: string = "bg-white dark:bg-black";
-const notSelectedClass: string = "cursor-pointer bg-neutral-300 dark:bg-neutral-600"
+const notSelectedClass: string = "cursor-pointer bg-neutral-300 dark:bg-neutral-700"
 
 // Shared switch UI used by ThemeToggle and AnimationToggle so both stay
 // visually consistent; each caller owns its own state and persistence.

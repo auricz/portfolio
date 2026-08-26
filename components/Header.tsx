@@ -54,7 +54,7 @@ export default function Header({ profile, theme, animations }: HeaderProps) {
               </div>
             </div>
 
-            <div className="mt-10 flex flex-col items-center gap-3">
+            <div className="mt-10 flex flex-col items-center gap-8">
               <ThemeToggle toggleData={theme} />
               <AnimationToggle toggleData={animations} />
             </div>

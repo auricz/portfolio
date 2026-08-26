@@ -57,6 +57,7 @@ body {
   animation: slide-in-right var(--transition-duration) var(--transition-easing) both;
 }
 
+
 /* Scroll reveal: toggled via a class added by IntersectionObserver the
    first time an element enters the viewport (see components/Reveal.tsx). */
 .reveal-right,
