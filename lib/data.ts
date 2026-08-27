@@ -202,31 +202,50 @@ function rowsToLinks(rows: string[][]): SocialLink[] {
 
 // --- Public entry point ----------------------------------------------------
 export async function getSiteData(): Promise<SiteData> {
-  const locations = await fetchConfig();
-  const data = await fetchAllRanges(locations);
+  try {
+    const locations = await fetchConfig();
+    const data = await fetchAllRanges(locations);
 
-  const [
-    [name], 
-    [about], 
-    [currently], 
-    [projectIntroText, projectIntroTags], 
-    [artIntroText, artIntroTags], 
-    [footer]
-  ] = data.staticData.map(([, ...r]) => r);
+    const [
+      [name], 
+      [about], 
+      [currently], 
+      [projectIntroText, projectIntroTags], 
+      [artIntroText, artIntroTags], 
+      [footer]
+    ] = data.staticData.map(([, ...r]) => r);
 
-  return {
-    staticData: { 
-      name: name ?? "Auric Z.",
-      about: about ?? null,
-      currently: currently ?? null,
-      projectIntro: projectIntroText ? { intro: projectIntroText, tags: splitList(projectIntroTags) } : null,
-      artIntro: artIntroText ? { intro: artIntroText, tags: splitList(artIntroTags) } : null,
-      footer: footer ?? null
-    },
-    tabs: TABS,
-    experiences: rowsToExperiences(data.experiences),
-    softwareProjects: rowsToProjects(data.projects),
-    artPieces: rowsToArtPieces(data.artPieces),
-    links: rowsToLinks(data.links),
-  };
+    return {
+      staticData: { 
+        name: name ?? "Auric Z.",
+        about: about ?? null,
+        currently: currently ?? null,
+        projectIntro: projectIntroText ? { intro: projectIntroText, tags: splitList(projectIntroTags) } : null,
+        artIntro: artIntroText ? { intro: artIntroText, tags: splitList(artIntroTags) } : null,
+        footer: footer ?? null
+      },
+      tabs: TABS,
+      experiences: rowsToExperiences(data.experiences),
+      softwareProjects: rowsToProjects(data.projects),
+      artPieces: rowsToArtPieces(data.artPieces),
+      links: rowsToLinks(data.links),
+    };
+  }
+  catch {
+    return {
+      staticData: { 
+        name: "Auric Z.",
+        about: "If you're reading this, something went wrong with getting data from Google Sheets.",
+        currently: null,
+        projectIntro: null,
+        artIntro: null,
+        footer: null
+      },
+      tabs: TABS,
+      experiences: [],
+      softwareProjects: [],
+      artPieces: [],
+      links: [],
+    };
+  }
 }
