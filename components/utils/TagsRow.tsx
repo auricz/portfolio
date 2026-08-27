@@ -1,5 +1,5 @@
 interface TagsProp {
-  tags?: string[];
+  tags: string[] | null;
 }
 
 // Reusable component for a list (or row) of tags

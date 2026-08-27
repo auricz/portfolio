@@ -5,7 +5,7 @@ import Image from "next/image";
 interface HoverImageProps {
   src: string;
   alt: string;
-  title: string;
+  title: string | null;
   date?: string | null;
   onClick: () => void;
   sizes?: string;
@@ -45,6 +45,7 @@ export default function HoverImage({
         sizes={sizes}
         loading={loading}
         className="object-cover transition-transform duration-300 group-hover:scale-[1.03]"
+        quality={25}
       />
       <span
         aria-hidden

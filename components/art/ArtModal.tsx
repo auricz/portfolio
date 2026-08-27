@@ -43,7 +43,7 @@ export default function ArtModal({ piece, dateFormatter, onClose }: ArtModalProp
   return (
     <ModalContainer
       btnAddClassName="top-6 right-6 lg:top-4 lg:right-4 flex items-center justify-center"
-      ariaLabel={piece.title}
+      ariaLabel={`Modal dialog for ${piece.title ?? "Untitled"}`}
       onClose={triggerClose}
       closing={closing}
     >
@@ -66,10 +66,12 @@ export default function ArtModal({ piece, dateFormatter, onClose }: ArtModalProp
               `}
               onClick={(e) => e.stopPropagation()}
             >
-              <h2 className="font-display text-2xl font-bold text-neutral-900 pr-8 lg:pr-0 dark:text-neutral-50">{piece.title}</h2>
+              <h2 className="font-display text-3xl font-bold text-neutral-900 pr-8 lg:pr-0 dark:text-neutral-50">
+                {piece.title ?? <i className="text-neutral-500 dark:text-neutral-400">Untitled</i>}
+              </h2>
               <p className="mt-2 text-sm">{dateFormatter(piece.date)}</p>
               <p className="mt-1 text-sm h-[1ch]">{imgDim ? `${imgDim.width} × ${imgDim.height}` : ''}</p>
-              <p className="mt-8 text-sm leading-relaxed whitespace-pre-line">{piece.description}</p>
+              <p className="mt-8 text-md leading-relaxed whitespace-pre-line" dangerouslySetInnerHTML={{ __html: piece.description ?? `<i className="text-neutral-500 dark:text-neutral-400">No description provided</i>`}} />
             </div>
 
             {/* Image area */}

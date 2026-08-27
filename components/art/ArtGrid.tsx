@@ -10,11 +10,12 @@ interface ArtGridProps {
   pieces: ArtPiece[];
 }
 
-// Sort by date descending, then title ascending
+// Sort by date descending, then title ascending, then filename
 const sortByDateDesc = (a: ArtPiece, b: ArtPiece) => {
   const dateCompare = Date.parse(b.date) - Date.parse(a.date);
   if (dateCompare !== 0) return dateCompare;
-  return a.title.localeCompare(b.title);
+  if (a.title && b.title) return a.title.localeCompare(b.title);
+  return a.fileName.localeCompare(b.fileName);
 }
 
 // Format dates to MMM DD, YYYY (ex: Jan 1, 2026)
@@ -62,7 +63,7 @@ export default function ArtGrid({ pieces }: ArtGridProps) {
             <Reveal key={piece.id} variant="up" style={{ transitionDelay: `${(i % colCount) * 100}ms` }}>
               <HoverImage
                 src={`/art/${piece.fileName}`}
-                alt={piece.title}
+                alt={piece.title ?? "Untitled"}
                 title={piece.title}
                 date={dateFormatter(piece.date)}
                 onClick={() => setOpenId(piece.id)}

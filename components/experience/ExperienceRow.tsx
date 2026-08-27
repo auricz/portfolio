@@ -8,16 +8,16 @@ interface ExperienceRowProps {
 
 export default function ExperienceRow({ experience }: ExperienceRowProps) {
   return (
-    <div className="border-b border-neutral-300 py-8 last:border-b-0 dark:border-neutral-600">
+    <div className="border-b border-neutral-500 py-8 dark:border-neutral-600">
       <div className="flex flex-col gap-8 sm:flex-row sm:items-start sm:justify-between">
         <div className="flex-1">
           <h3 className="font-display font-bold  mt-1 text-2xl text-neutral-900 dark:text-neutral-50">
             {experience.title}
           </h3>
-          <h4 className="text-[12px] font-semibold uppercase tracking-[0.2em] text-neutral-500/90 dark:text-neutral-400">
+          <h4 className="text-sm font-semibold uppercase tracking-[0.2em] text-neutral-500/90 dark:text-neutral-400">
             {experience.company} | {experience.year}
           </h4>
-          <p className="mt-3 max-w-3xl text-[15px] leading-relaxed text-neutral-600 dark:text-neutral-300 whitespace-pre-line">
+          <p className="mt-3 max-w-3xl text-md leading-relaxed text-neutral-600 dark:text-neutral-300 whitespace-pre-line">
             {experience.description}
           </p>
           <TagsRow tags={experience.tags} />

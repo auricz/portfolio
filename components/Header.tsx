@@ -45,20 +45,20 @@ export default function Header({ links, name, about, currently }: HeaderProps) {
             <div className="mx-auto mt-10 grid max-w-4xl grid-cols-1 gap-8 text-left">
               {about &&
                 <div>
-                  <h2 className="text-[12px] font-semibold uppercase tracking-[0.2em] text-neutral-500/90 dark:text-neutral-500">
+                  <h2 className="text-sm font-semibold uppercase tracking-[0.2em] text-neutral-500/90 dark:text-neutral-500">
                     About
                   </h2>
-                  <p className="mt-3 text-[15px] leading-relaxed whitespace-pre-line text-neutral-600 dark:text-neutral-300">
+                  <p className="mt-3 text-md leading-relaxed whitespace-pre-line text-neutral-600 dark:text-neutral-300">
                     {about}
                   </p>
                 </div>
               }
               {currently && 
                 <div>
-                  <h2 className="text-[12px] font-semibold uppercase tracking-[0.2em] text-neutral-500/90 dark:text-neutral-500">
+                  <h2 className="text-sm font-semibold uppercase tracking-[0.2em] text-neutral-500/90 dark:text-neutral-500">
                     Currently
                   </h2>
-                  <p className="mt-3 text-[15px] leading-relaxed whitespace-pre-line text-neutral-600 dark:text-neutral-300">
+                  <p className="mt-3 text-md leading-relaxed whitespace-pre-line text-neutral-600 dark:text-neutral-300">
                     {currently}
                   </p>
                 </div>

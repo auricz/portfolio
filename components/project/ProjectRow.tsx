@@ -19,14 +19,14 @@ export default function ProjectRow({ project }: ProjectRowProps) {
   const close = () => setActiveIndex(null);
 
   return (
-    <div className="border-b border-neutral-300 py-8 last:border-b-0 dark:border-neutral-600">
+    <div className="border-b border-neutral-500 py-8 dark:border-neutral-600">
       {/* Description + hero image, side by side on larger viewports. */}
       <div className="flex flex-col gap-8 md:flex-row md:items-start md:justify-between">
         <div className="flex-1">
           <h3 className="font-display mt-1 text-2xl font-bold text-neutral-900 dark:text-neutral-50">
             {project.title}
           </h3>
-          <p className="mt-3 max-w-3xl text-[15px] leading-relaxed text-neutral-600 dark:text-neutral-300 whitespace-pre-line">
+          <p className="mt-3 max-w-3xl text-md leading-relaxed text-neutral-600 dark:text-neutral-300 whitespace-pre-line">
             {project.description}
           </p>
           <TagsRow tags={project.tags} />

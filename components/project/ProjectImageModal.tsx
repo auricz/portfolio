@@ -51,13 +51,13 @@ export default function ProjectImageModal({
       <div
         className="relative flex max-h-full w-full max-w-400 flex-col items-center gap-3"
       >
-        <div className="relative h-[80vh] w-full">
+        <div className="relative flex justify-center h-[80vh] w-full">
           <Image
             src={`/projects/${projectId}/${active.fileName}`}
             alt={active.alt}
-            fill
-            sizes="(min-width:640px) 100vw, 100vw"
-            className="object-contain bg-white dark:bg-black"
+            width={1920}
+            height={1080}
+            className="max-h-[80vh] w-auto object-contain"
             onClick={(e) => e.stopPropagation()}
             
           />

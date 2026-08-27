@@ -29,15 +29,15 @@ export interface Experience {
 
 export interface ArtPiece {
   id: string;
-  title: string;
   date: string;
-  description: string;
   fileName: string;
+  title: string | null;
+  description: string | null;
 }
 
 export interface SectionIntroData {
   intro: string;
-  tags?: string[];
+  tags: string[] | null;
 }
 
 export interface SocialLink {
@@ -185,8 +185,12 @@ function rowsToProjects(rows: string[][]): Project[] {
 function rowsToArtPieces(rows: string[][]): ArtPiece[] {
   return rows
     .filter((r) => r[0])
-    .map(([date, title, description, fileName]) => ({
-      id: fileName, date, title, description, fileName,
+    .map(([date, fileName, title, description]) => ({
+      id: date + '_' + fileName,
+      fileName: date + '_' + fileName,
+      date, 
+      title: !title ? null : title, 
+      description: !description ? null : description, 
     }));
 }
 

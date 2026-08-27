@@ -8,10 +8,10 @@ interface IntroProps {
 
 export default function SectionIntro({ intro }: IntroProps) {
   return intro &&
-    <AnimateOnMount variant="right" className="pb-6 border-b border-neutral-300 dark:border-neutral-600">
+    <AnimateOnMount variant="right" className="pb-6 border-b border-neutral-500 dark:border-neutral-600">
       <div className="flex flex-col items-center">
         <p
-          className="text-sm max-w-4xl text-center text-[15px] leading-relaxed text-neutral-600 dark:text-neutral-300 whitespace-pre-line"
+          className="text-md max-w-4xl text-center leading-relaxed text-neutral-600 dark:text-neutral-300 whitespace-pre-line"
           dangerouslySetInnerHTML={{ __html: intro.intro }}
         />
         <TagsRow tags={intro.tags} />
