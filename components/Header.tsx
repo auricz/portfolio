@@ -8,7 +8,7 @@ import SocialLinks from "@/components/utils/SocialLinks";
 interface HeaderProps {
   links: SocialLink[];
   name: string;
-  about: string;
+  about: string | null;
   currently: string | null;
 }
 
@@ -43,26 +43,26 @@ export default function Header({ links, name, about, currently }: HeaderProps) {
             <SocialLinks links={links} size={40} className="mt-4 justify-center" />
 
             <div className="mx-auto mt-10 grid max-w-4xl grid-cols-1 gap-8 text-left">
-              <div>
-                <h2 className="text-[12px] font-semibold uppercase tracking-[0.2em] text-neutral-500/90 dark:text-neutral-500">
-                  About
-                </h2>
-                <p className="mt-3 text-[15px] leading-relaxed text-neutral-600 dark:text-neutral-300">
-                  {about}
-                </p>
-              </div>
-              <div>
-                {currently && 
-                  <>
-                    <h2 className="text-[12px] font-semibold uppercase tracking-[0.2em] text-neutral-500/90 dark:text-neutral-500">
-                      Currently
-                    </h2>
-                    <p className="mt-3 text-[15px] leading-relaxed text-neutral-600 dark:text-neutral-300">
-                      {currently}
-                    </p>
-                  </>
-                }
-              </div>
+              {about &&
+                <div>
+                  <h2 className="text-[12px] font-semibold uppercase tracking-[0.2em] text-neutral-500/90 dark:text-neutral-500">
+                    About
+                  </h2>
+                  <p className="mt-3 text-[15px] leading-relaxed text-neutral-600 dark:text-neutral-300">
+                    {about}
+                  </p>
+                </div>
+              }
+              {currently && 
+                <div>
+                  <h2 className="text-[12px] font-semibold uppercase tracking-[0.2em] text-neutral-500/90 dark:text-neutral-500">
+                    Currently
+                  </h2>
+                  <p className="mt-3 text-[15px] leading-relaxed text-neutral-600 dark:text-neutral-300">
+                    {currently}
+                  </p>
+                </div>
+              }
             </div>
 
             <div className="mt-10 flex flex-col items-center gap-8">

@@ -47,11 +47,10 @@ export interface SocialLink {
 }
 
 export interface SiteData {
-  meta: { siteTitle: string; siteDescription: string };
   tabs: { id: TabId; label: string }[];
   staticData: {
     name: string; 
-    about: string; 
+    about: string | null; 
     currently: string | null;
     projectIntro: SectionIntroData | null;
     artIntro: SectionIntroData | null;
@@ -80,7 +79,6 @@ const TABS: SiteData["tabs"] = [
 ];
 
 type SheetKey =
-  | "meta"
   | "staticData"
   | "experiences"
   | "projects"
@@ -88,7 +86,6 @@ type SheetKey =
   | "links";
 
 const SHEET_KEYS: SheetKey[] = [
-  "meta",
   "staticData",
   "experiences",
   "projects",
@@ -204,7 +201,6 @@ export async function getSiteData(): Promise<SiteData> {
   const locations = await fetchConfig();
   const data = await fetchAllRanges(locations);
 
-  const [siteTitle, siteDescription] = data.meta.map(r => r[1]) ?? [];
   const [
     [name], 
     [about], 
@@ -214,13 +210,10 @@ export async function getSiteData(): Promise<SiteData> {
     [footer]
   ] = data.staticData.map(([, ...r]) => r);
 
-  console.log(data.projects);
-
   return {
-    meta: { siteTitle, siteDescription },
     staticData: { 
-      name: name ?? "IDK You",
-      about: about ?? "",
+      name: name ?? "Auric Z.",
+      about: about ?? null,
       currently: currently ?? null,
       projectIntro: projectIntroText ? { intro: projectIntroText, tags: splitList(projectIntroTags) } : null,
       artIntro: artIntroText ? { intro: artIntroText, tags: splitList(artIntroTags) } : null,

@@ -5,15 +5,12 @@ import Footer from "@/components/Footer";
 import { getSiteData, SiteData } from "@/lib/data";
 import { themeInitScript } from "@/lib/theme-script";
 import { animationInitScript } from "@/lib/animation-script";
+import { Metadata } from "next";
 
-export async function generateMetadata() {
-  const siteData: SiteData = await getSiteData();
-
-  return {
-    title: siteData.meta.siteTitle,
-    description: siteData.meta.siteDescription,
-  }
-}
+export const metadata: Metadata = {
+  title: `Auric Z. — Portfolio`,
+  description: "My portfolio website for my professional experiences, software projects, and art drawings."
+};
 
 export default async function RootLayout({ children }: LayoutProps<"/">) {
   const siteData: SiteData = await getSiteData();
