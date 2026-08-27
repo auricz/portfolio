@@ -1,10 +1,10 @@
 import ArtGrid from "@/components/art/ArtGrid";
-import type { ArtPiece, SiteData } from "@/lib/data";
+import type { ArtPiece, SectionIntroData } from "@/lib/data";
 import SectionIntro from "@/components/utils/SectionIntro";
 
 interface ArtSectionProps {
   pieces: ArtPiece[];
-  artIntro: SiteData["artIntro"];
+  artIntro: SectionIntroData | null;
 }
 
 // Server component boundary: data is resolved here and handed to the

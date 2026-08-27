@@ -1,16 +1,18 @@
 import ThemeToggle from "@/components/utils/toggle/ThemeToggle";
 import AnimationToggle from "@/components/utils/toggle/AnimationToggle";
 import AnimateOnMount from "@/components/utils/AnimateOnMount";
-import type { SiteData } from "@/lib/data";
+import type { SocialLink } from "@/lib/data";
 import Image from "next/image";
 import SocialLinks from "@/components/utils/SocialLinks";
 
 interface HeaderProps {
-  profile: SiteData["profile"];
-  links: SiteData["links"]
+  links: SocialLink[];
+  name: string;
+  about: string;
+  currently: string | null;
 }
 
-export default function Header({ profile, links }: HeaderProps) {
+export default function Header({ links, name, about, currently }: HeaderProps) {
   return (
     // Allow images to size the header (avoid clipping) and keep layout flow
     <header className="relative overflow-visible px-6 pt-12 pb-8 text-center md:px-10 md:pt-16">
@@ -35,7 +37,7 @@ export default function Header({ profile, links }: HeaderProps) {
           {/* Main content column */}
           <div className="relative px-4 text-center flex-1">
             <h1 className="font-display text-5xl leading-none text-neutral-900 md:text-6xl dark:text-neutral-50 font-bold">
-              {profile.name}
+              {name}
             </h1>
 
             <SocialLinks links={links} size={40} className="mt-4 justify-center" />
@@ -46,16 +48,20 @@ export default function Header({ profile, links }: HeaderProps) {
                   About
                 </h2>
                 <p className="mt-3 text-[15px] leading-relaxed text-neutral-600 dark:text-neutral-300">
-                  {profile.about}
+                  {about}
                 </p>
               </div>
               <div>
-                <h2 className="text-[12px] font-semibold uppercase tracking-[0.2em] text-neutral-500/90 dark:text-neutral-500">
-                  Currently
-                </h2>
-                <p className="mt-3 text-[15px] leading-relaxed text-neutral-600 dark:text-neutral-300">
-                  {profile.currently}
-                </p>
+                {currently && 
+                  <>
+                    <h2 className="text-[12px] font-semibold uppercase tracking-[0.2em] text-neutral-500/90 dark:text-neutral-500">
+                      Currently
+                    </h2>
+                    <p className="mt-3 text-[15px] leading-relaxed text-neutral-600 dark:text-neutral-300">
+                      {currently}
+                    </p>
+                  </>
+                }
               </div>
             </div>
 

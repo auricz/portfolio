@@ -3,7 +3,7 @@ import TagsRow from "@/components/utils/TagsRow";
 import AnimateOnMount from "@/components/utils/AnimateOnMount";
 
 interface IntroProps {
-  intro?: SectionIntroData;
+  intro: SectionIntroData | null;
 }
 
 export default function SectionIntro({ intro }: IntroProps) {

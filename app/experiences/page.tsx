@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
 import ExperienceSection from "@/components/experience/ExperienceSection";
-import { siteData } from "@/lib/data";
+import { getSiteData, SiteData } from "@/lib/data";
 
-export const metadata: Metadata = {
-  title: `Experiences — ${siteData.profile.name}`,
-};
+// export const metadata: Metadata = {
+//   title: `Experiences — ${siteData.profile.name}`,
+// };
 
-export default function ExperiencePage() {
+export default async function ExperiencePage() {
+  const siteData: SiteData = await getSiteData();
   return <ExperienceSection experiences={siteData.experiences} />;
 }

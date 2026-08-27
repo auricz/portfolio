@@ -1,11 +1,11 @@
 import ProjectRow from "@/components/project/ProjectRow";
 import Reveal from "@/components/utils/Reveal";
-import type { Project, SiteData } from "@/lib/data";
+import type { Project, SectionIntroData } from "@/lib/data";
 import SectionIntro from "@/components/utils/SectionIntro";
 
 interface ProjectSectionProps {
   projects: Project[];
-  projectIntro: SiteData["projectIntro"];
+  projectIntro: SectionIntroData | null;
 }
 
 // Server component: the project list, descriptions, tags, and image paths
