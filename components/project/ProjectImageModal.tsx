@@ -59,7 +59,7 @@ export default function ProjectImageModal({
             height={1080}
             className="max-h-[80vh] w-auto object-contain"
             onClick={(e) => e.stopPropagation()}
-            
+            quality={100}
           />
         </div>
 
@@ -86,7 +86,7 @@ export default function ProjectImageModal({
                 }`}
               >
                 <span className="relative block h-full w-full">
-                  <Image src={`/projects/${projectId}/${img.fileName}`} alt="" fill sizes="50px" className="object-cover" />
+                  <Image src={`/projects/${projectId}/${img.fileName}`} alt="" fill sizes="50px" className="object-cover" quality={100} />
                 </span>
               </button>
             ))}

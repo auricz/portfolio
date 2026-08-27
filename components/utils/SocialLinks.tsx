@@ -28,6 +28,7 @@ export default function SocialLinks({ links, size, className = "" }: SocialLinks
             width={size}
             height={size}
             className="dark:invert-100"
+            quality={25}
           />
         </a>
       ))}

@@ -31,6 +31,7 @@ export default function ExperienceRow({ experience }: ExperienceRowProps) {
             width={500}
             height={500}
             className="object-contain p-8"
+            quality={25}
           />
         </div>
       </div>

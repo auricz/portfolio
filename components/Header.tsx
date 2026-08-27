@@ -29,6 +29,7 @@ export default function Header({ links, name, about, currently }: HeaderProps) {
                 height={500}
                 aria-hidden="true"
                 className="w-[clamp(110px,15vw,200px)] object-contain dark:invert-100"
+                quality={25}
                 preload
               />
             </AnimateOnMount>
@@ -80,6 +81,7 @@ export default function Header({ links, name, about, currently }: HeaderProps) {
                   width={250}
                   height={500}
                   className="max-h-80 w-auto object-contain dark:invert-100"
+                  quality={25}
                   preload
                 />
               </AnimateOnMount>
@@ -91,6 +93,7 @@ export default function Header({ links, name, about, currently }: HeaderProps) {
                   width={250}
                   height={500}
                   className="max-h-80 w-auto object-contain dark:invert-100"
+                  quality={25}
                   preload
                 />
               </AnimateOnMount>
@@ -107,6 +110,7 @@ export default function Header({ links, name, about, currently }: HeaderProps) {
                 height={500}
                 aria-hidden="true"
                 className="w-[clamp(110px,15vw,200px)] object-contain dark:invert-100"
+                quality={25}
                 preload
               />
             </AnimateOnMount>

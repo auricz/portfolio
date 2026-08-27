@@ -40,6 +40,7 @@ export default function ProjectRow({ project }: ProjectRowProps) {
             width={500}
             height={500}
             className="object-cover dark:invert-100"
+            quality={25}
           />
         </div>
       </div>
