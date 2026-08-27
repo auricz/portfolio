@@ -35,7 +35,7 @@ export default async function RootLayout({ children }: LayoutProps<"/">) {
           </div>
         </div>
         <main className="flex-1 bg-neutral-200 dark:bg-neutral-800">{children}</main>
-        <Footer footer={siteData.staticData.footer} links={siteData.links} />
+        <Footer footer={siteData.staticData.footer ?? ""} links={siteData.links} />
       </body>
     </html>
   );

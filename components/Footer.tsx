@@ -2,7 +2,7 @@ import { SiteData } from "@/lib/data";
 import SocialLinks from "@/components/utils/SocialLinks";
 
 interface FooterProps {
-  footer: SiteData["footer"];
+  footer: string;
   links: SiteData["links"]
 }
 
@@ -10,7 +10,7 @@ export default function Footer({ footer, links }: FooterProps) {
   return (
     <footer className="px-6 py-10 text-center sm:px-10 bg-neutral-200 dark:bg-neutral-800">
       <p 
-        className="mx-auto max-w-3xl text-sm leading-relaxed text-neutral-500 dark:text-neutral-400" 
+        className="mx-auto max-w-3xl text-sm leading-relaxed text-neutral-500 dark:text-neutral-400 whitespace-pre-line" 
         dangerouslySetInnerHTML={{ __html: footer }} 
       />
       <SocialLinks links={links} size={30} className="mt-4 justify-center" />

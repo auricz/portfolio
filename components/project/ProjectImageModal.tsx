@@ -49,9 +49,9 @@ export default function ProjectImageModal({
       closing={closing}
     >
       <div
-        className="relative flex max-h-full w-full max-w-4xl flex-col items-center gap-3"
+        className="relative flex max-h-full w-full max-w-400 flex-col items-center gap-3"
       >
-        <div className="relative h-[60vh] w-full">
+        <div className="relative h-[80vh] w-full">
           <Image
             src={`/projects/${projectId}/${active.fileName}`}
             alt={active.alt}

@@ -69,7 +69,7 @@ export default function ArtModal({ piece, dateFormatter, onClose }: ArtModalProp
               <h2 className="font-display text-2xl font-bold text-neutral-900 pr-8 lg:pr-0 dark:text-neutral-50">{piece.title}</h2>
               <p className="mt-2 text-sm">{dateFormatter(piece.date)}</p>
               <p className="mt-1 text-sm h-[1ch]">{imgDim ? `${imgDim.width} × ${imgDim.height}` : ''}</p>
-              <p className="mt-8 text-sm leading-relaxed">{piece.description}</p>
+              <p className="mt-8 text-sm leading-relaxed whitespace-pre-line">{piece.description}</p>
             </div>
 
             {/* Image area */}
