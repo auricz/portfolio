@@ -29,11 +29,7 @@ export default async function RootLayout({ children }: LayoutProps<"/">) {
           about={siteData.staticData.about}
           currently={siteData.staticData.currently}
         />
-        <div className="px-6 sm:px-10">
-          <div className="mx-auto max-w-7xl">
-            <TabsNav tabs={siteData.tabs} />
-          </div>
-        </div>
+        <TabsNav tabs={siteData.tabs} />
         <main className="flex-1 bg-neutral-200 dark:bg-neutral-800">{children}</main>
         <Footer footer={siteData.staticData.footer ?? ""} links={siteData.links} />
       </body>

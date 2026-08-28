@@ -234,7 +234,7 @@ export async function getSiteData(): Promise<SiteData> {
   catch {
     return {
       staticData: { 
-        name: "Auric Z.",
+        name: "Auric Zhou",
         about: "If you're reading this, something went wrong with getting data from Google Sheets.",
         currently: null,
         projectIntro: null,

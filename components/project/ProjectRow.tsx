@@ -10,9 +10,10 @@ import TagsRow from "@/components/utils/TagsRow";
 
 interface ProjectRowProps {
   project: Project;
+  idx: number;
 }
 
-export default function ProjectRow({ project }: ProjectRowProps) {
+export default function ProjectRow({ project, idx }: ProjectRowProps) {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
 
   const openAt = (index: number) => setActiveIndex(index);
@@ -42,6 +43,7 @@ export default function ProjectRow({ project }: ProjectRowProps) {
             className="object-cover dark:invert-100 select-none"
             draggable={false}
             quality={25}
+            loading={idx === 0 ? "eager" : "lazy"}
           />
         </div>
       </div>

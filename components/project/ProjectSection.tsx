@@ -17,9 +17,9 @@ export default function ProjectSection({ projects, projectIntro }: ProjectSectio
       <div className="mx-auto max-w-7xl flex flex-col">
         <SectionIntro intro={projectIntro} />
 
-        {projects.map((project) => (
+        {projects.map((project, idx) => (
           <Reveal key={project.id} variant="right">
-            <ProjectRow project={project} />
+            <ProjectRow project={project} idx={idx} />
           </Reveal>
         ))}
       </div>
