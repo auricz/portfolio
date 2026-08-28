@@ -28,7 +28,8 @@ export default function Header({ links, name, about, currently }: HeaderProps) {
                 width={250}
                 height={500}
                 aria-hidden="true"
-                className="w-[clamp(110px,15vw,200px)] object-contain dark:invert-100"
+                className="w-[clamp(110px,15vw,200px)] object-contain dark:invert-100 select-none"
+                draggable={false}
                 quality={25}
                 preload
               />
@@ -80,7 +81,8 @@ export default function Header({ links, name, about, currently }: HeaderProps) {
                   aria-hidden="true"
                   width={250}
                   height={500}
-                  className="max-h-80 w-auto object-contain dark:invert-100"
+                  className="max-h-80 w-auto object-contain dark:invert-100 select-none"
+                  draggable={false}
                   quality={25}
                   preload
                 />
@@ -92,7 +94,8 @@ export default function Header({ links, name, about, currently }: HeaderProps) {
                   aria-hidden="true"
                   width={250}
                   height={500}
-                  className="max-h-80 w-auto object-contain dark:invert-100"
+                  className="max-h-80 w-auto object-contain dark:invert-100 select-none"
+                  draggable={false}
                   quality={25}
                   preload
                 />
@@ -109,7 +112,8 @@ export default function Header({ links, name, about, currently }: HeaderProps) {
                 width={250}
                 height={500}
                 aria-hidden="true"
-                className="w-[clamp(110px,15vw,200px)] object-contain dark:invert-100"
+                className="w-[clamp(110px,15vw,200px)] object-contain dark:invert-100 select-none"
+                draggable={false}
                 quality={25}
                 preload
               />

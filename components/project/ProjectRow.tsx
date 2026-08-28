@@ -39,7 +39,8 @@ export default function ProjectRow({ project }: ProjectRowProps) {
             alt={`Hero image for ${project.title}`}
             width={500}
             height={500}
-            className="object-cover dark:invert-100"
+            className="object-cover dark:invert-100 select-none"
+            draggable={false}
             quality={25}
           />
         </div>

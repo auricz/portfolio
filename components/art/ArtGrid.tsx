@@ -20,7 +20,9 @@ const sortByDateDesc = (a: ArtPiece, b: ArtPiece) => {
 
 // Format dates to MMM DD, YYYY (ex: Jan 1, 2026)
 const dateFormatter = (date: string) => {
-  return new Date(date).toLocaleDateString("en-US", {
+  const d = new Date(date);
+  d.setDate(d.getDate() + 1);
+  return d.toLocaleDateString("en-US", {
     month: "short",
     day: "numeric",
     year: "numeric"

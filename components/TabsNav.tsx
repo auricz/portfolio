@@ -12,7 +12,7 @@ export default function TabsNav({ tabs }: TabsNavProps) {
   const pathname = usePathname();
 
   return (
-    <nav aria-label="Portfolio sections" className="grid grid-cols-3 w-full gap-4 break-all">
+    <nav aria-label="Portfolio sections" className="grid grid-cols-3 w-full gap-4">
       {tabs.map((tab) => {
         const href = `/${tab.id}`;
         const active = pathname === href;
@@ -21,7 +21,7 @@ export default function TabsNav({ tabs }: TabsNavProps) {
             key={tab.id}
             href={href}
             aria-current={active ? "page" : undefined}
-            className={`flex-1 rounded-t-md px-4 py-2.5 text-center text-lg ${
+            className={`flex-1 rounded-t-md px-4 py-2.5 text-center text-lg transition-colors duration-100 ${
               active
                 ? // Matches the panel background directly below, so the
                   // active tab reads as physically attached to its section.

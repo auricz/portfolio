@@ -84,7 +84,7 @@ export default function ArtModal({ piece, dateFormatter, onClose }: ArtModalProp
                   height={2000}
                   className="w-auto lg:max-h-[85vh] object-contain"
                   onClick={(e) => e.stopPropagation()}
-                  preload
+                  draggable={false}
                   quality={100}
                 />
               </div>

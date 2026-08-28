@@ -45,6 +45,7 @@ export default function HoverImage({
         sizes={sizes}
         loading={loading}
         className="object-cover transition-transform duration-300 group-hover:scale-[1.03]"
+        draggable={false}
         quality={25}
       />
       <span

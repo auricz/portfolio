@@ -30,7 +30,8 @@ export default function ExperienceRow({ experience }: ExperienceRowProps) {
             alt={`Logo for ${experience.company}`}
             width={500}
             height={500}
-            className="object-contain p-8"
+            className="object-contain p-8 select-none"
+            draggable={false}
             quality={25}
           />
         </div>
