@@ -3,7 +3,7 @@ import ExperienceSection from "@/components/experience/ExperienceSection";
 import { getSiteData, SiteData } from "@/lib/data";
 
 export const metadata: Metadata = {
-  title: `Auric Z. — Experiences`,
+  title: `Auric Z. | Experiences`,
   description: "My professional experiences throughout my academic and professional career."
 };
 
