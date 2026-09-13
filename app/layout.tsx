@@ -8,7 +8,7 @@ import { animationInitScript } from "@/lib/animation-script";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: `Auric Z. — Portfolio`,
+  title: `Auric Z. | Portfolio`,
   description: "My portfolio website for my professional experiences, software projects, and art drawings."
 };
 
