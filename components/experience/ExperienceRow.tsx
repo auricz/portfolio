@@ -24,7 +24,7 @@ export default function ExperienceRow({ experience }: ExperienceRowProps) {
         </div>
 
         {/* Company logo — static, not clickable, no gallery below. */}
-        <div className="relative flex justify-center mx-auto h-65 w-65 shrink-0 overflow-hidden rounded-lg text-black bg-white lg:mx-0">
+        <div className="relative flex items-center justify-center mx-auto h-65 w-65 shrink-0 overflow-hidden rounded-lg text-black bg-white lg:mx-0">
           <Image
             src={`/experiences/${experience.logoFileName}`}
             alt={`Logo for ${experience.company}`}
