@@ -5,6 +5,7 @@ import Image from "next/image";
 import HoverImage from "@/components/utils/HoverImage";
 import ProjectImageModal from "@/components/project/ProjectImageModal";
 import type { Project } from "@/lib/data";
+import { projectImageSrc } from "@/lib/project-media";
 import Reveal from "@/components/utils/Reveal";
 import TagsRow from "@/components/utils/TagsRow";
 
@@ -36,7 +37,7 @@ export default function ProjectRow({ project, idx }: ProjectRowProps) {
         {/* Static project image — not clickable, no modal. */}
         <div className="relative mx-auto h-67.5 w-67.5 shrink-0 overflow-hidden rounded-lg lg:mx-0 lg:h-80 lg:w-80">
           <Image
-            src={`/projects/${project.id}/${project.heroFileName}`}
+            src={`/projects/${project.heroFileName}`}
             alt={`Hero image for ${project.title}`}
             width={500}
             height={500}
@@ -54,9 +55,10 @@ export default function ProjectRow({ project, idx }: ProjectRowProps) {
         {project.screenshots.map((image, index) => (
           <Reveal key={image.id} variant="right" className="w-full" style={{ transitionDelay: `${index * 100}ms` }}>
             <HoverImage
-              src={`/projects/${project.id}/${image.fileName}`}
+              src={projectImageSrc(project.id, image)}
               alt={image.alt}
               title={image.title}
+              isVideo={!!image.youtubeId}
               onClick={() => openAt(index)}
               aspectClassName="aspect-video"
               sizes="(min-width: 640px) 30vw, 33vw"

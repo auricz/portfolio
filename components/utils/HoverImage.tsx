@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import PlayIcon from "@/components/utils/PlayIcon";
 
 interface HoverImageProps {
   src: string;
@@ -12,6 +13,8 @@ interface HoverImageProps {
   aspectClassName?: string;
   className?: string;
   loading?: "eager" | "lazy";
+  // Video thumbnails: skip the optimizer (remote host) and overlay a play badge.
+  isVideo?: boolean;
 }
 
 /**
@@ -31,6 +34,7 @@ export default function HoverImage({
   aspectClassName = "aspect-square",
   className = "",
   loading = "lazy",
+  isVideo = false,
 }: HoverImageProps) {
   return (
     <button
@@ -47,7 +51,9 @@ export default function HoverImage({
         className="object-cover transition-transform duration-300 group-hover:scale-[1.03]"
         draggable={false}
         quality={25}
+        unoptimized={isVideo}
       />
+      {isVideo ? <PlayIcon /> : null}
       <span
         aria-hidden
         className="absolute inset-x-0 bottom-0 h-2/3 bg-linear-to-t from-black/80 via-black/25 to-transparent opacity-0 transition-opacity duration-200 group-hover:opacity-100 group-focus-visible:opacity-100"

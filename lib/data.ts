@@ -1,8 +1,12 @@
-export type TabId = "experiences" | "projects" | "art";
+import { YOUTUBE_ID_RE } from "@/lib/project-media";
+
+export type TabId ="experiences" | "projects" | "art";
 
 export interface ProjectImage {
   id: string;
+  // Image filename, or a YouTube video ID (in which case youtubeId is set too).
   fileName: string;
+  youtubeId: string | null;
   alt: string;
   title: string;
 }
@@ -15,6 +19,8 @@ export interface Project {
   tags: string[];
   heroFileName: string;
   screenshots: ProjectImage[];
+  status: "main" | "extra" | null;
+  githubUrl: string | null;
 }
 
 export interface Experience {
@@ -99,7 +105,8 @@ const SHEETS_API_BASE = "https://sheets.googleapis.com/v4/spreadsheets";
 
 // --- Parsing helpers -----------------------------------------------------
 // Lists are comma-delimited. Screenshots are a list of objects, so each
-// entry is "fileName|title", entries separated by ";".
+// entry is "fileName|title", entries separated by ";". A fileName that is a
+// bare YouTube video ID (no extension) becomes a video.
 function splitList(value?: string): string[] {
   return value ? value.split(",").map((s) => s.trim()).filter(Boolean) : [];
 }
@@ -112,7 +119,8 @@ function parseScreenshots(value?: string): ProjectImage[] {
     .filter(Boolean)
     .map((entry) => {
       const [fileName, title] = entry.split("|").map((s) => s.trim());
-      return { id: fileName, fileName, alt: title, title };
+      const youtubeId = YOUTUBE_ID_RE.test(fileName) ? fileName : null;
+      return { id: fileName, fileName, youtubeId, alt: title, title };
     });
 }
 
@@ -171,7 +179,7 @@ function rowsToExperiences(rows: string[][]): Experience[] {
 function rowsToProjects(rows: string[][]): Project[] {
   return rows
     .filter((r) => r[0])
-    .map(([id, year, title, description, tags, heroFileName, screenshots]) => ({
+    .map(([status, id, year, title, description, tags, heroFileName, screenshots, githubUrl]) => ({
       id, 
       year, 
       title, 
@@ -179,6 +187,8 @@ function rowsToProjects(rows: string[][]): Project[] {
       tags: splitList(tags),
       heroFileName,
       screenshots: parseScreenshots(screenshots),
+      status: status === "main" ? "main" : status === "extra" ? "extra" : null,
+      githubUrl: githubUrl || null,
     }));
 }
 

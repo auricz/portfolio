@@ -4,6 +4,9 @@ import { useEffect } from "react";
 import Image from "next/image";
 import type { ProjectImage } from "@/lib/data";
 import ModalContainer from "@/components/utils/ModalContainer";
+import PlayIcon from "@/components/utils/PlayIcon";
+import YouTubePlayer from "@/components/utils/YouTubePlayer";
+import { projectImageSrc } from "@/lib/project-media";
 import { useModalTransition } from "@/lib/use-modal-transition";
 
 interface ProjectImageModalProps {
@@ -52,15 +55,37 @@ export default function ProjectImageModal({
         className="relative flex max-h-full w-full max-w-400 flex-col items-center gap-3"
       >
         <div className="relative flex justify-center h-[80vh] w-full">
-          <Image
-            src={`/projects/${projectId}/${active.fileName}`}
-            alt={active.alt}
-            width={1920}
-            height={1080}
-            className="max-h-[80vh] w-auto object-contain"
-            onClick={(e) => e.stopPropagation()}
-            quality={100}
-          />
+          {active.youtubeId ? (
+            <div
+              className="relative self-center aspect-video w-[min(100%,calc(80vh*16/9))] overflow-hidden rounded-lg bg-black"
+              onClick={(e) => e.stopPropagation()}
+            >
+              {/* Only ever mounted while the modal is open and not closing;
+                  the fade-out shows the thumbnail so playback stops at once. */}
+              {closing ? (
+                <Image
+                  src={projectImageSrc(projectId, active)}
+                  alt=""
+                  fill
+                  sizes="100vw"
+                  className="object-cover"
+                  unoptimized
+                />
+              ) : (
+                <YouTubePlayer videoId={active.youtubeId} title={active.title} />
+              )}
+            </div>
+          ) : (
+            <Image
+              src={projectImageSrc(projectId, active)}
+              alt={active.alt}
+              width={1920}
+              height={1080}
+              className="max-h-[80vh] w-auto object-contain"
+              onClick={(e) => e.stopPropagation()}
+              quality={100}
+            />
+          )}
         </div>
 
         <div className="flex w-full items-center justify-between text-sm text-white" onClick={(e) => e.stopPropagation()}>
@@ -86,7 +111,16 @@ export default function ProjectImageModal({
                 }`}
               >
                 <span className="relative block h-full w-full">
-                  <Image src={`/projects/${projectId}/${img.fileName}`} alt="" fill sizes="50px" className="object-cover" quality={100} />
+                  <Image
+                    src={projectImageSrc(projectId, img)}
+                    alt=""
+                    fill
+                    sizes="50px"
+                    className="object-cover"
+                    quality={100}
+                    unoptimized={!!img.youtubeId}
+                  />
+                  {img.youtubeId ? <PlayIcon className="h-6 w-6" /> : null}
                 </span>
               </button>
             ))}
