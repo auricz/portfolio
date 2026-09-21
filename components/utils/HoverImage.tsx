@@ -40,7 +40,7 @@ export default function HoverImage({
     <button
       type="button"
       onClick={onClick}
-      className={`group relative block w-full overflow-hidden rounded-lg bg-neutral-300 text-left dark:bg-neutral-700 cursor-pointer ${aspectClassName} ${className}`}
+      className={`group relative block w-full max-h-[40vh] overflow-hidden rounded-lg bg-neutral-300 text-left dark:bg-neutral-700 cursor-pointer ${aspectClassName} ${className}`}
     >
       <Image
         src={src}
