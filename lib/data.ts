@@ -79,7 +79,7 @@ const CONFIG_RANGE = "A2:C20";
 
 // Static — not part of the sheet, since tabs are a code-level concern.
 const TABS: SiteData["tabs"] = [
-  { id: "experiences", label: "Experiences" },
+  // { id: "experiences", label: "Experiences" },
   { id: "projects", label: "Projects" },
   { id: "art", label: "Art Gallery" },
 ];

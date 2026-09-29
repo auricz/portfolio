@@ -34,7 +34,7 @@ export default function TabsNav({ tabs }: TabsNavProps) {
           stuck ? "bg-white dark:bg-neutral-950" : ""
         }`}
       >
-        <nav aria-label="Portfolio sections" className="mx-auto grid w-full max-w-7xl grid-cols-3 gap-4">
+        <nav aria-label="Portfolio sections" className={`mx-auto grid w-full max-w-7xl grid-cols-${tabs.length} gap-4`}>
           {tabs.map((tab) => {
             const href = `/${tab.id}`;
             const active = pathname === href;
