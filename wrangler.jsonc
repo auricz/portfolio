@@ -23,6 +23,9 @@
 			"id": "56010588ae704281b9deaee995ee86a1"
 		}
 	],
+	"vars": {
+    "GOOGLE_SHEET_ID": "1fBIXoBIeh9Oa5AHGjywkosYXC5BrRf9Ei8Ymq_xlPT8"
+  },
 	"workers_dev": false,
 	"preview_urls": false
 }
