@@ -23,7 +23,7 @@ export default function Header({ links, name, about, currently }: HeaderProps) {
           <div className="hidden md:flex md:items-start md:justify-start">
             <AnimateOnMount variant="left">
               <Image
-                src="/header_code.png"
+                src="/header_code.webp"
                 alt=""
                 width={250}
                 height={500}
@@ -76,7 +76,7 @@ export default function Header({ links, name, about, currently }: HeaderProps) {
             <div className="mt-6 flex items-center justify-around gap-4 md:hidden">
               <AnimateOnMount variant="left">
                 <Image
-                  src="/header_code.png"
+                  src="/header_code.webp"
                   alt=""
                   aria-hidden="true"
                   width={250}
@@ -89,7 +89,7 @@ export default function Header({ links, name, about, currently }: HeaderProps) {
               </AnimateOnMount>
               <AnimateOnMount variant="right">
                 <Image
-                  src="/header_art.png"
+                  src="/header_art.webp"
                   alt=""
                   aria-hidden="true"
                   width={250}
@@ -107,7 +107,7 @@ export default function Header({ links, name, about, currently }: HeaderProps) {
           <div className="hidden md:flex md:items-start md:justify-end">
             <AnimateOnMount variant="right">
               <Image
-                src="/header_art.png"
+                src="/header_art.webp"
                 alt=""
                 width={250}
                 height={500}
