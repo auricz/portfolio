@@ -5,6 +5,7 @@ import Image from "next/image";
 import type { ProjectImage } from "@/lib/data";
 import ModalContainer from "@/components/utils/ModalContainer";
 import PlayIcon from "@/components/utils/PlayIcon";
+import SkeletonImage from "@/components/utils/SkeletonImage";
 import YouTubePlayer from "@/components/utils/YouTubePlayer";
 import { projectImageSrc } from "@/lib/project-media";
 import { useModalTransition } from "@/lib/use-modal-transition";
@@ -72,16 +73,19 @@ export default function ProjectImageModal({
                   unoptimized
                 />
               ) : (
-                <YouTubePlayer videoId={active.youtubeId} title={active.title} />
+                <YouTubePlayer key={active.youtubeId} videoId={active.youtubeId} title={active.title} />
               )}
             </div>
           ) : (
-            <Image
+            <SkeletonImage
+              key={active.id}
               src={projectImageSrc(projectId, active)}
               alt={active.alt}
               width={1920}
               height={1080}
               className="max-h-[80vh] w-auto object-contain"
+              skeletonClassName="self-center aspect-video w-[min(100%,calc(80vh*16/9))] rounded-lg"
+              loading="eager"
               onClick={(e) => e.stopPropagation()}
               quality={100}
             />
@@ -111,7 +115,7 @@ export default function ProjectImageModal({
                 }`}
               >
                 <span className="relative block h-full w-full">
-                  <Image
+                  <SkeletonImage
                     src={projectImageSrc(projectId, img)}
                     alt=""
                     fill

@@ -135,6 +135,24 @@ body {
   .art-panel-closing { animation-name: art-panel-out-right; }
 }
 
+/* Loading skeleton shimmer (see components/utils/Skeleton.tsx): a soft
+   vertical band sweeping left to right. The band is 30% wide, so background
+   positions of -42.86% and 142.86% place it just off each edge. */
+@keyframes skeleton-shimmer {
+  from { background-position: -42.86% 0; }
+  to { background-position: 142.86% 0; }
+}
+.skeleton {
+  --skeleton-shine: rgb(255 255 255 / 0.6);
+  background-image: linear-gradient(90deg, transparent, var(--skeleton-shine), transparent);
+  background-size: 30% 100%;
+  background-repeat: no-repeat;
+  animation: skeleton-shimmer 1.5s ease-in-out infinite;
+}
+.dark .skeleton {
+  --skeleton-shine: rgb(255 255 255 / 0.12);
+}
+
 /* Disables everything above, either via the Animations toggle or, on first
    load, when the OS prefers reduced motion (see lib/animation-script.ts). */
 .no-animations,
@@ -156,11 +174,15 @@ body {
 .no-animations .art-image,
 .no-animations .art-image-closing,
 .no-animations .art-panel,
-.no-animations .art-panel-closing {
+.no-animations .art-panel-closing,
+.no-animations .skeleton {
   animation: none !important;
   opacity: 1 !important;
   transform: none !important;
   transition: none !important;
+}
+.no-animations .skeleton {
+  background-image: none;
 }
 .no-animations a,
 .no-animations button {

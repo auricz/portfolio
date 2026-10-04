@@ -1,6 +1,7 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
+import Skeleton from "@/components/utils/Skeleton";
 
 // Minimal typings for the parts of the YouTube IFrame API used here.
 interface YTPlayer {
@@ -66,10 +67,13 @@ interface YouTubePlayerProps {
 /**
  * Autoplaying YouTube embed. It plays as soon as it mounts and is destroyed
  * when it unmounts, so render it only while the modal is open. It also
- * pauses while the browser tab is hidden and resumes when it returns.
+ * pauses while the browser tab is hidden and resumes when it returns. A
+ * skeleton covers it until the player is ready; key it by videoId so that
+ * resets when the video changes.
  */
 export default function YouTubePlayer({ videoId, title }: YouTubePlayerProps) {
   const containerRef = useRef<HTMLDivElement>(null);
+  const [ready, setReady] = useState<boolean>(false);
 
   useEffect(() => {
     const container = containerRef.current;
@@ -115,6 +119,7 @@ export default function YouTubePlayer({ videoId, title }: YouTubePlayerProps) {
           events: {
             onReady: ({ target: ready }) => {
               if (cancelled) return;
+              setReady(true);
               ready.getIframe().title = title;
               // Autoplay may have started while the tab was already hidden.
               if (document.hidden) {
@@ -136,5 +141,10 @@ export default function YouTubePlayer({ videoId, title }: YouTubePlayerProps) {
     };
   }, [videoId, title]);
 
-  return <div ref={containerRef} className="h-full w-full" />;
+  return (
+    <div className="relative h-full w-full">
+      <div ref={containerRef} className="h-full w-full" />
+      {ready ? null : <Skeleton className="absolute inset-0" />}
+    </div>
+  );
 }

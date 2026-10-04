@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import Image from "next/image";
+import SkeletonImage from "@/components/utils/SkeletonImage";
 import type { ArtPiece } from "@/lib/data";
 import ModalContainer from "@/components/utils/ModalContainer";
 import { useModalTransition } from "@/lib/use-modal-transition";
@@ -36,9 +36,15 @@ export default function ArtModal({ piece, dateFormatter, onClose }: ArtModalProp
 
   const artSrc: string = `/art/${piece.fileName}`;
 
-  const img: HTMLImageElement = document.createElement("img");
-  img.src = artSrc;
-  img.onload = () => setImgDim({ width: img.width, height: img.height});
+  // Original dimensions (the displayed image is resized by the optimizer).
+  useEffect(() => {
+    const img: HTMLImageElement = document.createElement("img");
+    img.onload = () => setImgDim({ width: img.naturalWidth, height: img.naturalHeight });
+    img.src = artSrc;
+    return () => {
+      img.onload = null;
+    };
+  }, [artSrc]);
 
   return (
     <ModalContainer
@@ -77,12 +83,15 @@ export default function ArtModal({ piece, dateFormatter, onClose }: ArtModalProp
             {/* Image area */}
             <div className="relative order-2 w-full flex-1 lg:order-1">
               <div className="flex items-baseline lg:items-center justify-center relative h-full w-full">
-                <Image
+                <SkeletonImage
+                  key={artSrc}
                   src={artSrc}
                   alt={`Art piece titled: ${piece.title}`}
                   width={2000}
                   height={2000}
                   className="w-auto lg:max-h-[85vh] object-contain"
+                  skeletonClassName="aspect-square w-full max-w-full rounded-lg lg:h-[85vh] lg:w-auto"
+                  loading="eager"
                   onClick={(e) => e.stopPropagation()}
                   draggable={false}
                   quality={100}

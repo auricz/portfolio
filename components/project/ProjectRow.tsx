@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import HoverImage from "@/components/utils/HoverImage";
+import SkeletonImage from "@/components/utils/SkeletonImage";
 import ProjectImageModal from "@/components/project/ProjectImageModal";
 import type { Project } from "@/lib/data";
 import { projectImageSrc } from "@/lib/project-media";
@@ -57,12 +58,13 @@ export default function ProjectRow({ project, idx }: ProjectRowProps) {
 
         {/* Static project image — not clickable, no modal. */}
         <div className="relative mx-auto h-67.5 w-67.5 shrink-0 overflow-hidden rounded-lg lg:mx-0 lg:h-80 lg:w-80">
-          <Image
+          <SkeletonImage
             src={`/projects/${project.id}/${project.heroFileName}`}
             alt={`Hero image for ${project.title}`}
             width={500}
             height={500}
             className="object-cover dark:invert-100 select-none"
+            skeletonClassName="h-full w-full"
             draggable={false}
             quality={25}
             loading={idx === 0 ? "eager" : "lazy"}

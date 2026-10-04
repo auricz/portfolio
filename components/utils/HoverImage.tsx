@@ -1,6 +1,6 @@
 "use client";
 
-import Image from "next/image";
+import SkeletonImage from "@/components/utils/SkeletonImage";
 import PlayIcon from "@/components/utils/PlayIcon";
 
 interface HoverImageProps {
@@ -42,7 +42,8 @@ export default function HoverImage({
       onClick={onClick}
       className={`group relative block w-full max-h-[40vh] overflow-hidden rounded-lg bg-neutral-300 text-left dark:bg-neutral-700 cursor-pointer ${aspectClassName} ${className}`}
     >
-      <Image
+      <SkeletonImage
+        key={src}
         src={src}
         alt={alt}
         fill
