@@ -30,7 +30,9 @@ export default async function RootLayout({ children }: LayoutProps<"/">) {
           currently={siteData.staticData.currently}
         />
         <TabsNav tabs={siteData.tabs} />
-        <main className="flex-1 bg-neutral-200 dark:bg-neutral-800">{children}</main>
+        {/* overflow-x-clip: Reveal's translateX start state would otherwise
+            widen the page, letting mobile users pinch-zoom out past it. */}
+        <main className="flex-1 overflow-x-clip bg-neutral-200 dark:bg-neutral-800">{children}</main>
         <Footer footer={siteData.staticData.footer ?? ""} links={siteData.links} />
       </body>
     </html>

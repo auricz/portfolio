@@ -14,8 +14,9 @@ interface HeaderProps {
 
 export default function Header({ links, name, about, currently }: HeaderProps) {
   return (
-    // Allow images to size the header (avoid clipping) and keep layout flow
-    <header className="relative overflow-visible px-6 pt-12 pb-8 text-center md:px-10 md:pt-16">
+    // Allow images to size the header vertically, but clip horizontally so the
+    // slide-in-right animation doesn't widen the page on mobile.
+    <header className="relative overflow-x-clip px-6 pt-12 pb-8 text-center md:px-10 md:pt-16">
       <div className="mx-auto max-w-7xl">
         <div className="grid items-start md:flex md:justify-around md:gap-8">
           {/* Left image column (only visible on md+). Images are in the same flow as
@@ -81,7 +82,7 @@ export default function Header({ links, name, about, currently }: HeaderProps) {
                   aria-hidden="true"
                   width={250}
                   height={500}
-                  className="max-h-80 w-auto object-contain dark:invert-100 select-none"
+                  className="max-h-72 w-auto object-contain dark:invert-100 select-none"
                   draggable={false}
                   quality={25}
                   preload
@@ -94,7 +95,7 @@ export default function Header({ links, name, about, currently }: HeaderProps) {
                   aria-hidden="true"
                   width={250}
                   height={500}
-                  className="max-h-80 w-auto object-contain dark:invert-100 select-none"
+                  className="max-h-72 w-auto object-contain dark:invert-100 select-none"
                   draggable={false}
                   quality={25}
                   preload
